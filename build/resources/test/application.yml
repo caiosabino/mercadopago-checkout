@@ -1,0 +1,3 @@
+mercadopago:
+  access-token: TEST-TOKEN-FAKE-FOR-TESTS
+  notification-url: https://test.com/webhook

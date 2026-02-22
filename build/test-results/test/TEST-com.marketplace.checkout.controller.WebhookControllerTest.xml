@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="WebhookController" tests="0" skipped="0" failures="0" errors="0" timestamp="1970-01-01T00:00:00Z" hostname="caio-sabino" time="0.0">
+  <properties/>
+  <system-out><![CDATA[2026-02-22T08:59:05.765-03:00  INFO 36231 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.marketplace.checkout.controller.WebhookControllerTest]: WebhookControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-02-22T08:59:05.773-03:00  INFO 36231 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.marketplace.checkout.CheckoutApplication for test class com.marketplace.checkout.controller.WebhookControllerTest
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

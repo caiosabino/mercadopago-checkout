@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="GET /api/checkout/preferences/{id}" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-02-22T11:59:05.194Z" hostname="caio-sabino" time="0.213">
+  <properties/>
+  <testcase name="deve retornar 200 com a preferência pelo ID" classname="com.marketplace.checkout.controller.CheckoutControllerTest$GetPreferences" time="0.175"/>
+  <testcase name="deve retornar 404 quando preferência não existe" classname="com.marketplace.checkout.controller.CheckoutControllerTest$GetPreferences" time="0.022"/>
+  <testcase name="deve retornar 500 em caso de erro interno ao buscar preferência" classname="com.marketplace.checkout.controller.CheckoutControllerTest$GetPreferences" time="0.01"/>
+  <system-out><![CDATA[08:59:02.917 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.marketplace.checkout.controller.CheckoutControllerTest$GetPreferences]: GetPreferences does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+08:59:02.930 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.marketplace.checkout.CheckoutApplication for test class com.marketplace.checkout.controller.CheckoutControllerTest$GetPreferences
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.2)
+
+2026-02-22T08:59:03.358-03:00  INFO 36231 --- [    Test worker] c.m.c.controller.CheckoutControllerTest  : Starting CheckoutControllerTest using Java 21.0.10 with PID 36231 (started by caio in /home/caio/Documentos/Projects/mercadopago-checkout)
+2026-02-22T08:59:03.359-03:00  INFO 36231 --- [    Test worker] c.m.c.controller.CheckoutControllerTest  : No active profile set, falling back to 1 default profile: "default"
+2026-02-22T08:59:05.150-03:00  INFO 36231 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-02-22T08:59:05.151-03:00  INFO 36231 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-02-22T08:59:05.153-03:00  INFO 36231 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-02-22T08:59:05.182-03:00  INFO 36231 --- [    Test worker] c.m.c.controller.CheckoutControllerTest  : Started CheckoutControllerTest in 2.203 seconds (process running for 3.357)
+2026-02-22T08:59:05.277-03:00  INFO 36231 --- [    Test worker] c.m.c.controller.CheckoutController      : GET /api/checkout/preferences/PREF-123
+2026-02-22T08:59:05.378-03:00  INFO 36231 --- [    Test worker] c.m.c.controller.CheckoutController      : GET /api/checkout/preferences/PREF-INVALID
+2026-02-22T08:59:05.382-03:00 ERROR 36231 --- [    Test worker] c.m.c.exception.GlobalExceptionHandler   : Checkout error: Preference not found
+2026-02-22T08:59:05.401-03:00  INFO 36231 --- [    Test worker] c.m.c.controller.CheckoutController      : GET /api/checkout/preferences/PREF-ANY
+2026-02-22T08:59:05.403-03:00 ERROR 36231 --- [    Test worker] c.m.c.exception.GlobalExceptionHandler   : Checkout error: Error fetching preference
+]]></system-out>
+  <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build what is described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/home/caio/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.15.11/a38b16385e867f59a641330f0362ebe742788ed8/byte-buddy-agent-1.15.11.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

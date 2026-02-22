@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="createPreference" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-02-22T11:59:06.677Z" hostname="caio-sabino" time="0.07">
+  <properties/>
+  <testcase name="deve criar preferência com payer sem phone e sem address" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.007"/>
+  <testcase name="deve criar preferência com sucesso - request mínimo" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.005"/>
+  <testcase name="deve criar preferência com payer completo" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.006"/>
+  <testcase name="deve criar preferência com autoReturn null" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.004"/>
+  <testcase name="deve criar preferência com backUrls" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.005"/>
+  <testcase name="deve usar notificationUrl do request quando fornecida" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.005"/>
+  <testcase name="deve usar defaultNotificationUrl quando request não tem url" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.006"/>
+  <testcase name="deve lançar CheckoutException com status 500 quando MPException ocorre" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.005"/>
+  <testcase name="deve lançar CheckoutException quando MPApiException ocorre" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.006"/>
+  <testcase name="deve criar preferência com múltiplos itens" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.006"/>
+  <testcase name="deve criar preferência sem notificationUrl (ambas em branco)" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.005"/>
+  <testcase name="deve criar preferência com autoReturn false" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.004"/>
+  <system-out><![CDATA[2026-02-22T08:59:06.680-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
+2026-02-22T08:59:06.683-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
+2026-02-22T08:59:06.688-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
+2026-02-22T08:59:06.689-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
+2026-02-22T08:59:06.694-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
+2026-02-22T08:59:06.696-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
+2026-02-22T08:59:06.700-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
+2026-02-22T08:59:06.701-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
+2026-02-22T08:59:06.705-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
+2026-02-22T08:59:06.707-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
+2026-02-22T08:59:06.711-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
+2026-02-22T08:59:06.712-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
+2026-02-22T08:59:06.718-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
+2026-02-22T08:59:06.718-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
+2026-02-22T08:59:06.723-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
+2026-02-22T08:59:06.724-03:00 ERROR 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Mercado Pago SDK error: SDK error
+2026-02-22T08:59:06.729-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
+2026-02-22T08:59:06.730-03:00 ERROR 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Mercado Pago API error: status=401, message=Unauthorized
+2026-02-22T08:59:06.734-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: null
+2026-02-22T08:59:06.735-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
+2026-02-22T08:59:06.740-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
+2026-02-22T08:59:06.741-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
+2026-02-22T08:59:06.745-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
+2026-02-22T08:59:06.746-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

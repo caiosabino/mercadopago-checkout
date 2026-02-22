@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="getPreference" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-02-22T11:59:06.469Z" hostname="caio-sabino" time="0.207">
+<testsuite name="getPreference" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-02-22T12:42:59.269Z" hostname="caio-sabino" time="0.289">
   <properties/>
-  <testcase name="deve retornar preferência pelo ID com sucesso" classname="com.marketplace.checkout.service.CheckoutServiceTest$GetPreference" time="0.135"/>
-  <testcase name="deve lançar CheckoutException com status 500 em MPException no getPreference" classname="com.marketplace.checkout.service.CheckoutServiceTest$GetPreference" time="0.037"/>
-  <testcase name="deve lançar CheckoutException quando preferência não encontrada (MPApiException)" classname="com.marketplace.checkout.service.CheckoutServiceTest$GetPreference" time="0.035"/>
-  <system-out><![CDATA[2026-02-22T08:59:06.596-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Fetching preference: PREF-123
-2026-02-22T08:59:06.636-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Fetching preference: PREF-ANY
-2026-02-22T08:59:06.674-03:00  INFO 36231 --- [    Test worker] c.m.checkout.service.CheckoutService     : Fetching preference: PREF-INVALID
+  <testcase name="deve retornar preferência pelo ID com sucesso" classname="com.marketplace.checkout.service.CheckoutServiceTest$GetPreference" time="0.172"/>
+  <testcase name="deve lançar CheckoutException com status 500 em MPException no getPreference" classname="com.marketplace.checkout.service.CheckoutServiceTest$GetPreference" time="0.066"/>
+  <testcase name="deve lançar CheckoutException quando preferência não encontrada (MPApiException)" classname="com.marketplace.checkout.service.CheckoutServiceTest$GetPreference" time="0.05"/>
+  <system-out><![CDATA[2026-02-22T09:42:59.431-03:00  INFO 42229 --- [    Test worker] c.m.checkout.service.CheckoutService     : Fetching preference: PREF-123
+2026-02-22T09:42:59.498-03:00  INFO 42229 --- [    Test worker] c.m.checkout.service.CheckoutService     : Fetching preference: PREF-ANY
+2026-02-22T09:42:59.556-03:00  INFO 42229 --- [    Test worker] c.m.checkout.service.CheckoutService     : Fetching preference: PREF-INVALID
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

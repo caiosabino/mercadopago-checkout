@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CheckoutException" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-02-22T11:59:06.241Z" hostname="caio-sabino" time="0.003">
+<testsuite name="CheckoutException" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-02-22T12:42:58.880Z" hostname="caio-sabino" time="0.015">
   <properties/>
-  <testcase name="deve criar exceção com mensagem e statusCode" classname="com.marketplace.checkout.exception.CheckoutExceptionTest" time="0.001"/>
-  <testcase name="deve ser RuntimeException" classname="com.marketplace.checkout.exception.CheckoutExceptionTest" time="0.0"/>
-  <testcase name="deve criar exceção com mensagem, statusCode e causa" classname="com.marketplace.checkout.exception.CheckoutExceptionTest" time="0.0"/>
+  <testcase name="deve criar exceção com mensagem e statusCode" classname="com.marketplace.checkout.exception.CheckoutExceptionTest" time="0.005"/>
+  <testcase name="deve ser RuntimeException" classname="com.marketplace.checkout.exception.CheckoutExceptionTest" time="0.002"/>
+  <testcase name="deve criar exceção com mensagem, statusCode e causa" classname="com.marketplace.checkout.exception.CheckoutExceptionTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

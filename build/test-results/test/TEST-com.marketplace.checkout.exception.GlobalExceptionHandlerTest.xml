@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="GlobalExceptionHandler" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-02-22T11:59:06.246Z" hostname="caio-sabino" time="0.218">
+<testsuite name="GlobalExceptionHandler" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-02-22T12:42:58.899Z" hostname="caio-sabino" time="0.362">
   <properties/>
-  <testcase name="deve retornar 400 com lista de detalhes para MethodArgumentNotValidException" classname="com.marketplace.checkout.exception.GlobalExceptionHandlerTest" time="0.209"/>
+  <testcase name="deve retornar 400 com lista de detalhes para MethodArgumentNotValidException" classname="com.marketplace.checkout.exception.GlobalExceptionHandlerTest" time="0.355"/>
   <testcase name="deve retornar resposta com status correto para CheckoutException" classname="com.marketplace.checkout.exception.GlobalExceptionHandlerTest" time="0.001"/>
-  <testcase name="deve retornar 500 para exceções genéricas" classname="com.marketplace.checkout.exception.GlobalExceptionHandlerTest" time="0.007"/>
-  <system-out><![CDATA[2026-02-22T08:59:06.456-03:00 ERROR 36231 --- [    Test worker] c.m.c.exception.GlobalExceptionHandler   : Checkout error: API Error
-2026-02-22T08:59:06.457-03:00 ERROR 36231 --- [    Test worker] c.m.c.exception.GlobalExceptionHandler   : Unexpected error
+  <testcase name="deve retornar 500 para exceções genéricas" classname="com.marketplace.checkout.exception.GlobalExceptionHandlerTest" time="0.005"/>
+  <system-out><![CDATA[2026-02-22T09:42:59.255-03:00 ERROR 42229 --- [    Test worker] c.m.c.exception.GlobalExceptionHandler   : Checkout error: API Error
+2026-02-22T09:42:59.257-03:00 ERROR 42229 --- [    Test worker] c.m.c.exception.GlobalExceptionHandler   : Unexpected error
 
 java.lang.RuntimeException: Unexpected failure
 	at com.marketplace.checkout.exception.GlobalExceptionHandlerTest.deveRetornar500ParaExcecaoGenerica(GlobalExceptionHandlerTest.java:67) ~[test/:na]

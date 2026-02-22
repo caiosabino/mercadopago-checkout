@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.306s</div>
+<div class="counter">0.446s</div>
 <p>duration</p>
 </div>
 </td>
@@ -81,67 +81,67 @@
 <tr>
 <td class="success">deve propagar CheckoutException como erro de negócio</td>
 <td class="success">devePropagrarCheckoutException()</td>
-<td class="success">0.013s</td>
+<td class="success">0.016s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">deve retornar 201 e corpo da preferência criada</td>
 <td class="success">deveRetornar201()</td>
-<td class="success">0.181s</td>
+<td class="success">0.247s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">deve retornar 400 quando items é null</td>
 <td class="success">deveRetornar400ItemsNull()</td>
-<td class="success">0.007s</td>
+<td class="success">0.011s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">deve retornar 400 quando quantity é null</td>
 <td class="success">deveRetornar400QuantityNull()</td>
-<td class="success">0.008s</td>
+<td class="success">0.013s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">deve retornar 400 quando quantity é 0</td>
 <td class="success">deveRetornar400QuantityZero()</td>
-<td class="success">0.009s</td>
+<td class="success">0.011s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">deve retornar 400 quando item não tem id</td>
 <td class="success">deveRetornar400SemId()</td>
-<td class="success">0.022s</td>
+<td class="success">0.039s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">deve retornar 400 quando items está vazio</td>
 <td class="success">deveRetornar400SemItems()</td>
-<td class="success">0.016s</td>
+<td class="success">0.019s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">deve retornar 400 quando item não tem title</td>
 <td class="success">deveRetornar400SemTitle()</td>
-<td class="success">0.007s</td>
+<td class="success">0.015s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">deve retornar 400 quando unitPrice é null</td>
 <td class="success">deveRetornar400UnitPriceNull()</td>
-<td class="success">0.009s</td>
+<td class="success">0.020s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">deve retornar 400 quando unitPrice é zero</td>
 <td class="success">deveRetornar400UnitPriceZero()</td>
-<td class="success">0.012s</td>
+<td class="success">0.018s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">deve retornar 500 em caso de exceção genérica</td>
 <td class="success">deveRetornar500EmExcecaoGenerica()</td>
-<td class="success">0.022s</td>
+<td class="success">0.037s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -149,11 +149,11 @@
 <div class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2026-02-22T08:59:05.415-03:00  INFO 36231 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences]: PostPreferences does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-02-22T08:59:05.427-03:00  INFO 36231 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.marketplace.checkout.CheckoutApplication for test class com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences
-2026-02-22T08:59:05.607-03:00  INFO 36231 --- [    Test worker] c.m.c.controller.CheckoutController      : POST /api/checkout/preferences - Creating preference
-2026-02-22T08:59:05.644-03:00  INFO 36231 --- [    Test worker] c.m.c.controller.CheckoutController      : POST /api/checkout/preferences - Creating preference
-2026-02-22T08:59:05.645-03:00 ERROR 36231 --- [    Test worker] c.m.c.exception.GlobalExceptionHandler   : Unexpected error
+<pre>2026-02-22T09:42:57.675-03:00  INFO 42229 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences]: PostPreferences does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-02-22T09:42:57.702-03:00  INFO 42229 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.marketplace.checkout.CheckoutApplication for test class com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences
+2026-02-22T09:42:57.952-03:00  INFO 42229 --- [    Test worker] c.m.c.controller.CheckoutController      : POST /api/checkout/preferences - Creating preference
+2026-02-22T09:42:58.013-03:00  INFO 42229 --- [    Test worker] c.m.c.controller.CheckoutController      : POST /api/checkout/preferences - Creating preference
+2026-02-22T09:42:58.015-03:00 ERROR 42229 --- [    Test worker] c.m.c.exception.GlobalExceptionHandler   : Unexpected error
 
 java.lang.RuntimeException: Unexpected error
 	at com.marketplace.checkout.service.CheckoutService.createPreference(CheckoutService.java:24) ~[main/:na]
@@ -282,8 +282,8 @@ java.lang.RuntimeException: Unexpected error
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69) ~[gradle-worker.jar:na]
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74) ~[gradle-worker.jar:na]
 
-2026-02-22T08:59:05.696-03:00  INFO 36231 --- [    Test worker] c.m.c.controller.CheckoutController      : POST /api/checkout/preferences - Creating preference
-2026-02-22T08:59:05.697-03:00 ERROR 36231 --- [    Test worker] c.m.c.exception.GlobalExceptionHandler   : Checkout error: Mercado Pago API error: Unauthorized
+2026-02-22T09:42:58.092-03:00  INFO 42229 --- [    Test worker] c.m.c.controller.CheckoutController      : POST /api/checkout/preferences - Creating preference
+2026-02-22T09:42:58.093-03:00 ERROR 42229 --- [    Test worker] c.m.c.exception.GlobalExceptionHandler   : Checkout error: Mercado Pago API error: Unauthorized
 </pre>
 </span>
 </div>
@@ -295,7 +295,7 @@ java.lang.RuntimeException: Unexpected error
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="https://www.gradle.org">Gradle 9.0.0</a> at 22 de fev. de 2026 08:59:06</p>
+<a href="https://www.gradle.org">Gradle 9.0.0</a> at 22 de fev. de 2026 09:42:59</p>
 </div>
 </div>
 </body>

@@ -7,6 +7,7 @@ import com.mercadopago.client.common.PhoneRequest;
 import com.mercadopago.client.preference.*;
 import com.mercadopago.exceptions.*;
 import com.mercadopago.resources.preference.Preference;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -15,17 +16,18 @@ import java.util.List;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class CheckoutService {
 
     @Value("${mercadopago.notification-url:}")
     private String defaultNotificationUrl;
 
+    private final PreferenceClient client;
+
     public CheckoutPreferenceResponse createPreference(CheckoutPreferenceRequest request) {
         log.info("Creating Mercado Pago preference for externalRef: {}", request.getExternalReference());
 
         try {
-            PreferenceClient client = new PreferenceClient();
-
             PreferenceRequest mpRequest = buildPreferenceRequest(request);
             Preference preference = client.create(mpRequest);
 
@@ -57,7 +59,6 @@ public class CheckoutService {
     public CheckoutPreferenceResponse getPreference(String preferenceId) {
         log.info("Fetching preference: {}", preferenceId);
         try {
-            PreferenceClient client = new PreferenceClient();
             Preference preference = client.get(preferenceId);
 
             return CheckoutPreferenceResponse.builder()

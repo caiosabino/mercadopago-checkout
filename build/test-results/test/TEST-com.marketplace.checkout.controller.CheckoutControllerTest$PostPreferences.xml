@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="POST /api/checkout/preferences" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-02-22T12:42:57.712Z" hostname="caio-sabino" time="0.475">
+<testsuite name="POST /api/checkout/preferences" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-02-22T13:49:33.161Z" hostname="caio-sabino" time="0.169">
   <properties/>
-  <testcase name="deve retornar 201 e corpo da preferência criada" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.247"/>
-  <testcase name="deve retornar 400 quando item não tem id" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.039"/>
-  <testcase name="deve retornar 500 em caso de exceção genérica" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.037"/>
-  <testcase name="deve retornar 400 quando items está vazio" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.019"/>
-  <testcase name="deve retornar 400 quando item não tem title" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.015"/>
-  <testcase name="deve propagar CheckoutException como erro de negócio" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.016"/>
-  <testcase name="deve retornar 400 quando quantity é null" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.013"/>
-  <testcase name="deve retornar 400 quando quantity é 0" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.011"/>
-  <testcase name="deve retornar 400 quando items é null" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.011"/>
-  <testcase name="deve retornar 400 quando unitPrice é null" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.02"/>
-  <testcase name="deve retornar 400 quando unitPrice é zero" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.018"/>
-  <system-out><![CDATA[2026-02-22T09:42:57.675-03:00  INFO 42229 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences]: PostPreferences does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-02-22T09:42:57.702-03:00  INFO 42229 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.marketplace.checkout.CheckoutApplication for test class com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences
-2026-02-22T09:42:57.952-03:00  INFO 42229 --- [    Test worker] c.m.c.controller.CheckoutController      : POST /api/checkout/preferences - Creating preference
-2026-02-22T09:42:58.013-03:00  INFO 42229 --- [    Test worker] c.m.c.controller.CheckoutController      : POST /api/checkout/preferences - Creating preference
-2026-02-22T09:42:58.015-03:00 ERROR 42229 --- [    Test worker] c.m.c.exception.GlobalExceptionHandler   : Unexpected error
+  <testcase name="deve retornar 201 e corpo da preferência criada" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.092"/>
+  <testcase name="deve retornar 400 quando item não tem id" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.015"/>
+  <testcase name="deve retornar 500 em caso de exceção genérica" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.011"/>
+  <testcase name="deve retornar 400 quando items está vazio" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.006"/>
+  <testcase name="deve retornar 400 quando item não tem title" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.005"/>
+  <testcase name="deve propagar CheckoutException como erro de negócio" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.006"/>
+  <testcase name="deve retornar 400 quando quantity é null" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.005"/>
+  <testcase name="deve retornar 400 quando quantity é 0" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.004"/>
+  <testcase name="deve retornar 400 quando items é null" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.003"/>
+  <testcase name="deve retornar 400 quando unitPrice é null" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.005"/>
+  <testcase name="deve retornar 400 quando unitPrice é zero" classname="com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences" time="0.005"/>
+  <system-out><![CDATA[2026-02-22T10:49:33.153-03:00  INFO 54587 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences]: PostPreferences does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-02-22T10:49:33.160-03:00  INFO 54587 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.marketplace.checkout.CheckoutApplication for test class com.marketplace.checkout.controller.CheckoutControllerTest$PostPreferences
+2026-02-22T10:49:33.251-03:00  INFO 54587 --- [    Test worker] c.m.c.controller.CheckoutController      : POST /api/checkout/preferences - Creating preference
+2026-02-22T10:49:33.274-03:00  INFO 54587 --- [    Test worker] c.m.c.controller.CheckoutController      : POST /api/checkout/preferences - Creating preference
+2026-02-22T10:49:33.275-03:00 ERROR 54587 --- [    Test worker] c.m.c.exception.GlobalExceptionHandler   : Unexpected error
 
 java.lang.RuntimeException: Unexpected error
-	at com.marketplace.checkout.service.CheckoutService.createPreference(CheckoutService.java:24) ~[main/:na]
+	at com.marketplace.checkout.service.CheckoutService.createPreference(CheckoutService.java:28) ~[main/:na]
 	at com.marketplace.checkout.controller.CheckoutController.createPreference(CheckoutController.java:28) ~[main/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
@@ -145,8 +145,8 @@ java.lang.RuntimeException: Unexpected error
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69) ~[gradle-worker.jar:na]
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74) ~[gradle-worker.jar:na]
 
-2026-02-22T09:42:58.092-03:00  INFO 42229 --- [    Test worker] c.m.c.controller.CheckoutController      : POST /api/checkout/preferences - Creating preference
-2026-02-22T09:42:58.093-03:00 ERROR 42229 --- [    Test worker] c.m.c.exception.GlobalExceptionHandler   : Checkout error: Mercado Pago API error: Unauthorized
+2026-02-22T10:49:33.300-03:00  INFO 54587 --- [    Test worker] c.m.c.controller.CheckoutController      : POST /api/checkout/preferences - Creating preference
+2026-02-22T10:49:33.301-03:00 ERROR 54587 --- [    Test worker] c.m.c.exception.GlobalExceptionHandler   : Checkout error: Mercado Pago API error: Unauthorized
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

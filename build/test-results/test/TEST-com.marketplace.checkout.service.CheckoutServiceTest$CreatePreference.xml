@@ -1,45 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="createPreference" tests="13" skipped="0" failures="0" errors="0" timestamp="2026-02-22T13:49:33.848Z" hostname="caio-sabino" time="0.057">
+<testsuite name="createPreference" tests="14" skipped="0" failures="0" errors="0" timestamp="2026-02-27T01:23:33.013Z" hostname="caio-sabino" time="0.077">
   <properties/>
-  <testcase name="deve criar preferência com múltiplos itens" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.005"/>
+  <testcase name="deve criar preferência com múltiplos itens" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.007"/>
   <testcase name="deve criar preferência com backUrls" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.004"/>
   <testcase name="deve criar preferência com payer sem phone e sem address" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.004"/>
-  <testcase name="deve criar preferência sem notificationUrl (ambas em branco)" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.004"/>
-  <testcase name="deve criar preferência com autoReturn null" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.002"/>
-  <testcase name="deve criar preferência com autoReturn false" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.003"/>
-  <testcase name="deve criar preferência com sucesso - request mínimo" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.004"/>
+  <testcase name="deve criar preferência sem notificationUrl (ambas em branco)" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.014"/>
+  <testcase name="deve criar preferência com autoReturn null" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.005"/>
+  <testcase name="deve criar preferência com autoReturn false" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.005"/>
+  <testcase name="deve criar preferência com sucesso - request mínimo (sem payer)" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.003"/>
   <testcase name="deve chamar o client exatamente uma vez" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.008"/>
-  <testcase name="deve criar preferência com payer completo" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.005"/>
+  <testcase name="deve criar preferência com payer completo e salvar no repositório" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.004"/>
   <testcase name="deve usar notificationUrl do request quando fornecida" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.003"/>
-  <testcase name="deve usar defaultNotificationUrl quando request não tem url" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.002"/>
-  <testcase name="deve lançar CheckoutException com status 500 quando MPException ocorre" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.003"/>
-  <testcase name="deve lançar CheckoutException quando MPApiException ocorre" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.004"/>
-  <system-out><![CDATA[2026-02-22T10:49:33.851-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: null
-2026-02-22T10:49:33.853-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
-2026-02-22T10:49:33.856-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
-2026-02-22T10:49:33.857-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
-2026-02-22T10:49:33.860-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
-2026-02-22T10:49:33.861-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
-2026-02-22T10:49:33.865-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
-2026-02-22T10:49:33.866-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
-2026-02-22T10:49:33.868-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
-2026-02-22T10:49:33.869-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
-2026-02-22T10:49:33.871-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
-2026-02-22T10:49:33.872-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
-2026-02-22T10:49:33.875-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
-2026-02-22T10:49:33.875-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
-2026-02-22T10:49:33.879-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
-2026-02-22T10:49:33.879-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
-2026-02-22T10:49:33.888-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
-2026-02-22T10:49:33.890-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
-2026-02-22T10:49:33.893-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
-2026-02-22T10:49:33.893-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
-2026-02-22T10:49:33.896-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
-2026-02-22T10:49:33.896-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Preference created successfully. ID: PREF-123
-2026-02-22T10:49:33.900-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
-2026-02-22T10:49:33.900-03:00 ERROR 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Mercado Pago SDK error: SDK error
-2026-02-22T10:49:33.904-03:00  INFO 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Creating Mercado Pago preference for externalRef: ORDER-001
-2026-02-22T10:49:33.905-03:00 ERROR 54587 --- [    Test worker] c.m.checkout.service.CheckoutService     : Mercado Pago API error: status=401, message=Unauthorized
+  <testcase name="deve usar defaultNotificationUrl quando request não tem url" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.004"/>
+  <testcase name="deve lançar CheckoutException com status 500 quando MPException ocorre" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.004"/>
+  <testcase name="deve lançar CheckoutException quando MPApiException ocorre" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.003"/>
+  <testcase name="não deve chamar o repositório quando payer é nulo" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePreference" time="0.002"/>
+  <system-out><![CDATA[22:23:33.017 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Mercado Pago preference for externalRef: null
+22:23:33.020 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Preference created successfully. ID: PREF-123
+22:23:33.023 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Mercado Pago preference for externalRef: ORDER-001
+22:23:33.024 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Preference created successfully. ID: PREF-123
+22:23:33.027 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Mercado Pago preference for externalRef: ORDER-001
+22:23:33.028 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Preference created successfully. ID: PREF-123
+22:23:33.043 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Mercado Pago preference for externalRef: ORDER-001
+22:23:33.043 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Preference created successfully. ID: PREF-123
+22:23:33.047 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Mercado Pago preference for externalRef: ORDER-001
+22:23:33.048 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Preference created successfully. ID: PREF-123
+22:23:33.054 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Mercado Pago preference for externalRef: ORDER-001
+22:23:33.054 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Preference created successfully. ID: PREF-123
+22:23:33.057 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Mercado Pago preference for externalRef: ORDER-001
+22:23:33.057 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Preference created successfully. ID: PREF-123
+22:23:33.061 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Mercado Pago preference for externalRef: ORDER-001
+22:23:33.062 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Preference created successfully. ID: PREF-123
+22:23:33.070 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Mercado Pago preference for externalRef: ORDER-001
+22:23:33.071 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Preference created successfully. ID: PREF-123
+22:23:33.074 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Mercado Pago preference for externalRef: ORDER-001
+22:23:33.074 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Preference created successfully. ID: PREF-123
+22:23:33.078 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Mercado Pago preference for externalRef: ORDER-001
+22:23:33.079 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Preference created successfully. ID: PREF-123
+22:23:33.082 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Mercado Pago preference for externalRef: ORDER-001
+22:23:33.083 [Test worker] ERROR com.marketplace.checkout.service.CheckoutService -- Mercado Pago SDK error: SDK error
+22:23:33.086 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Mercado Pago preference for externalRef: ORDER-001
+22:23:33.087 [Test worker] ERROR com.marketplace.checkout.service.CheckoutService -- Mercado Pago API error: status=401, message=Unauthorized
+22:23:33.090 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Mercado Pago preference for externalRef: ORDER-001
+22:23:33.090 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Preference created successfully. ID: PREF-123
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

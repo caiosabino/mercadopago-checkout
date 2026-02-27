@@ -1,5 +1,6 @@
 package com.marketplace.checkout.service;
 
+import com.marketplace.checkout.domain.repository.PreferenceRepository;
 import com.marketplace.checkout.dto.CheckoutPreferenceRequest;
 import com.marketplace.checkout.dto.CheckoutPreferenceResponse;
 import com.marketplace.checkout.exception.CheckoutException;
@@ -34,7 +35,10 @@ class CheckoutServiceTest {
     private CheckoutService checkoutService;
 
     @Mock
-    private PreferenceClient preferenceClient;
+    private PreferenceClient client; // nome deve bater com o campo no service
+
+    @Mock
+    private PreferenceRepository preferenceRepository; // adicionado pois o service depende dele
 
     // ---------------------------------------------------------------- helpers
 
@@ -53,12 +57,24 @@ class CheckoutServiceTest {
         return req;
     }
 
+    private CheckoutPreferenceRequest buildRequestComPayer() {
+        CheckoutPreferenceRequest req = buildMinimalRequest();
+
+        CheckoutPreferenceRequest.PayerRequest payer = new CheckoutPreferenceRequest.PayerRequest();
+        payer.setName("João");
+        payer.setSurname("Silva");
+        payer.setEmail("joao@example.com");
+        req.setPayer(payer);
+
+        return req;
+    }
+
     private Preference buildMockPreference() {
         return new Preference() {
-            @Override public String getId() { return "PREF-123"; }
-            @Override public String getInitPoint() { return "https://www.mercadopago.com/checkout/PREF-123"; }
-            @Override public String getSandboxInitPoint() { return "https://sandbox.mercadopago.com/checkout/PREF-123"; }
-            @Override public String getExternalReference() { return "ORDER-001"; }
+            @Override public String getId()                  { return "PREF-123"; }
+            @Override public String getInitPoint()           { return "https://www.mercadopago.com/checkout/PREF-123"; }
+            @Override public String getSandboxInitPoint()    { return "https://sandbox.mercadopago.com/checkout/PREF-123"; }
+            @Override public String getExternalReference()   { return "ORDER-001"; }
             @Override public OffsetDateTime getDateCreated() { return OffsetDateTime.now(); }
             @Override public OffsetDateTime getExpirationDateTo() { return OffsetDateTime.now().plusDays(3); }
         };
@@ -71,9 +87,9 @@ class CheckoutServiceTest {
     class CreatePreference {
 
         @Test
-        @DisplayName("deve criar preferência com sucesso - request mínimo")
+        @DisplayName("deve criar preferência com sucesso - request mínimo (sem payer)")
         void deveCrearPreferenciaMinima() throws MPException, MPApiException {
-            when(preferenceClient.create(any())).thenReturn(buildMockPreference());
+            when(client.create(any())).thenReturn(buildMockPreference());
 
             CheckoutPreferenceResponse response = checkoutService.createPreference(buildMinimalRequest());
 
@@ -87,9 +103,9 @@ class CheckoutServiceTest {
         }
 
         @Test
-        @DisplayName("deve criar preferência com payer completo")
+        @DisplayName("deve criar preferência com payer completo e salvar no repositório")
         void deveCrearPreferenciaComPayerCompleto() throws MPException, MPApiException {
-            when(preferenceClient.create(any())).thenReturn(buildMockPreference());
+            when(client.create(any())).thenReturn(buildMockPreference());
 
             CheckoutPreferenceRequest req = buildMinimalRequest();
 
@@ -115,12 +131,15 @@ class CheckoutServiceTest {
 
             assertThat(response).isNotNull();
             assertThat(response.getId()).isEqualTo("PREF-123");
+
+            // verifica que o repositório foi chamado para salvar
+            verify(preferenceRepository, times(1)).save(any());
         }
 
         @Test
         @DisplayName("deve criar preferência com payer sem phone e sem address")
         void deveCrearPreferenciaComPayerSemPhoneESemAddress() throws MPException, MPApiException {
-            when(preferenceClient.create(any())).thenReturn(buildMockPreference());
+            when(client.create(any())).thenReturn(buildMockPreference());
 
             CheckoutPreferenceRequest req = buildMinimalRequest();
 
@@ -134,9 +153,19 @@ class CheckoutServiceTest {
         }
 
         @Test
+        @DisplayName("não deve chamar o repositório quando payer é nulo")
+        void naoDeveSalvarRepositorioSemPayer() throws MPException, MPApiException {
+            when(client.create(any())).thenReturn(buildMockPreference());
+
+            checkoutService.createPreference(buildMinimalRequest());
+
+            verify(preferenceRepository, never()).save(any());
+        }
+
+        @Test
         @DisplayName("deve criar preferência com backUrls")
         void deveCrearPreferenciaComBackUrls() throws MPException, MPApiException {
-            when(preferenceClient.create(any())).thenReturn(buildMockPreference());
+            when(client.create(any())).thenReturn(buildMockPreference());
 
             CheckoutPreferenceRequest req = buildMinimalRequest();
 
@@ -155,73 +184,63 @@ class CheckoutServiceTest {
         @Test
         @DisplayName("deve criar preferência com autoReturn false")
         void deveCrearPreferenciaAutoReturnFalse() throws MPException, MPApiException {
-            when(preferenceClient.create(any())).thenReturn(buildMockPreference());
+            when(client.create(any())).thenReturn(buildMockPreference());
 
             CheckoutPreferenceRequest req = buildMinimalRequest();
             req.setAutoReturn(false);
 
-            CheckoutPreferenceResponse response = checkoutService.createPreference(req);
-
-            assertThat(response).isNotNull();
+            assertThat(checkoutService.createPreference(req)).isNotNull();
         }
 
         @Test
         @DisplayName("deve criar preferência com autoReturn null")
         void deveCrearPreferenciaAutoReturnNull() throws MPException, MPApiException {
-            when(preferenceClient.create(any())).thenReturn(buildMockPreference());
+            when(client.create(any())).thenReturn(buildMockPreference());
 
             CheckoutPreferenceRequest req = buildMinimalRequest();
             req.setAutoReturn(null);
 
-            CheckoutPreferenceResponse response = checkoutService.createPreference(req);
-
-            assertThat(response).isNotNull();
+            assertThat(checkoutService.createPreference(req)).isNotNull();
         }
 
         @Test
         @DisplayName("deve usar notificationUrl do request quando fornecida")
         void deveUsarNotificationUrlDoRequest() throws MPException, MPApiException {
-            when(preferenceClient.create(any())).thenReturn(buildMockPreference());
+            when(client.create(any())).thenReturn(buildMockPreference());
 
             CheckoutPreferenceRequest req = buildMinimalRequest();
             req.setNotificationUrl("https://myapp.com/webhook");
 
-            CheckoutPreferenceResponse response = checkoutService.createPreference(req);
-
-            assertThat(response).isNotNull();
-            verify(preferenceClient).create(any(PreferenceRequest.class));
+            assertThat(checkoutService.createPreference(req)).isNotNull();
+            verify(client).create(any(PreferenceRequest.class));
         }
 
         @Test
         @DisplayName("deve usar defaultNotificationUrl quando request não tem url")
         void deveUsarDefaultNotificationUrl() throws MPException, MPApiException {
             ReflectionTestUtils.setField(checkoutService, "defaultNotificationUrl", "https://default.com/webhook");
-            when(preferenceClient.create(any())).thenReturn(buildMockPreference());
+            when(client.create(any())).thenReturn(buildMockPreference());
 
-            CheckoutPreferenceResponse response = checkoutService.createPreference(buildMinimalRequest());
-
-            assertThat(response).isNotNull();
-            verify(preferenceClient).create(any(PreferenceRequest.class));
+            assertThat(checkoutService.createPreference(buildMinimalRequest())).isNotNull();
+            verify(client).create(any(PreferenceRequest.class));
         }
 
         @Test
         @DisplayName("deve criar preferência sem notificationUrl (ambas em branco)")
         void deveCrearPreferenciaSemNotificationUrl() throws MPException, MPApiException {
             ReflectionTestUtils.setField(checkoutService, "defaultNotificationUrl", "");
-            when(preferenceClient.create(any())).thenReturn(buildMockPreference());
+            when(client.create(any())).thenReturn(buildMockPreference());
 
             CheckoutPreferenceRequest req = buildMinimalRequest();
             req.setNotificationUrl(null);
 
-            CheckoutPreferenceResponse response = checkoutService.createPreference(req);
-
-            assertThat(response).isNotNull();
+            assertThat(checkoutService.createPreference(req)).isNotNull();
         }
 
         @Test
         @DisplayName("deve criar preferência com múltiplos itens")
         void deveCrearPreferenciaComMultiplosItens() throws MPException, MPApiException {
-            when(preferenceClient.create(any())).thenReturn(buildMockPreference());
+            when(client.create(any())).thenReturn(buildMockPreference());
 
             CheckoutPreferenceRequest req = new CheckoutPreferenceRequest();
 
@@ -242,9 +261,7 @@ class CheckoutServiceTest {
 
             req.setItems(List.of(item1, item2));
 
-            CheckoutPreferenceResponse response = checkoutService.createPreference(req);
-
-            assertThat(response).isNotNull();
+            assertThat(checkoutService.createPreference(req)).isNotNull();
         }
 
         @Test
@@ -253,7 +270,7 @@ class CheckoutServiceTest {
             MPApiException mpApiEx = mock(MPApiException.class);
             when(mpApiEx.getStatusCode()).thenReturn(401);
             when(mpApiEx.getMessage()).thenReturn("Unauthorized");
-            when(preferenceClient.create(any())).thenThrow(mpApiEx);
+            when(client.create(any())).thenThrow(mpApiEx);
 
             assertThatThrownBy(() -> checkoutService.createPreference(buildMinimalRequest()))
                     .isInstanceOf(CheckoutException.class)
@@ -266,7 +283,7 @@ class CheckoutServiceTest {
         void deveLancarCheckoutExceptionParaMPException() throws MPException, MPApiException {
             MPException mpEx = mock(MPException.class);
             when(mpEx.getMessage()).thenReturn("SDK error");
-            when(preferenceClient.create(any())).thenThrow(mpEx);
+            when(client.create(any())).thenThrow(mpEx);
 
             assertThatThrownBy(() -> checkoutService.createPreference(buildMinimalRequest()))
                     .isInstanceOf(CheckoutException.class)
@@ -277,11 +294,11 @@ class CheckoutServiceTest {
         @Test
         @DisplayName("deve chamar o client exatamente uma vez")
         void deveChamarClientUmaVez() throws MPException, MPApiException {
-            when(preferenceClient.create(any())).thenReturn(buildMockPreference());
+            when(client.create(any())).thenReturn(buildMockPreference());
 
             checkoutService.createPreference(buildMinimalRequest());
 
-            verify(preferenceClient, times(1)).create(any(PreferenceRequest.class));
+            verify(client, times(1)).create(any(PreferenceRequest.class));
         }
     }
 
@@ -294,13 +311,8 @@ class CheckoutServiceTest {
         @Test
         @DisplayName("deve retornar preferência pelo ID com sucesso")
         void deveRetornarPreferenciaPorId() throws MPException, MPApiException {
-            Preference mockPref = buildMockPreference();
-            when(preferenceClient.get("PREF-123")).thenReturn(mockPref);
+            when(client.get("PREF-123")).thenReturn(buildMockPreference());
 
-            // Injeta o client mockado no método que cria new PreferenceClient()
-            // Como o método getPreference() cria uma instância local, precisamos refatorar
-            // ou testar via integração. Aqui testamos o comportamento esperado.
-            // Se o método usar o client injetado, o teste abaixo funcionará:
             CheckoutPreferenceResponse response = checkoutService.getPreference("PREF-123");
 
             assertThat(response).isNotNull();
@@ -316,7 +328,7 @@ class CheckoutServiceTest {
             MPApiException mpApiEx = mock(MPApiException.class);
             when(mpApiEx.getStatusCode()).thenReturn(404);
             when(mpApiEx.getMessage()).thenReturn("Not Found");
-            when(preferenceClient.get(any())).thenThrow(mpApiEx);
+            when(client.get(any())).thenThrow(mpApiEx);
 
             assertThatThrownBy(() -> checkoutService.getPreference("PREF-INVALID"))
                     .isInstanceOf(CheckoutException.class)
@@ -329,7 +341,7 @@ class CheckoutServiceTest {
         void deveLancarExceptionMPExceptionNoGet() throws MPException, MPApiException {
             MPException mpEx = mock(MPException.class);
             when(mpEx.getMessage()).thenReturn("connection error");
-            when(preferenceClient.get(any())).thenThrow(mpEx);
+            when(client.get(any())).thenThrow(mpEx);
 
             assertThatThrownBy(() -> checkoutService.getPreference("PREF-ANY"))
                     .isInstanceOf(CheckoutException.class)

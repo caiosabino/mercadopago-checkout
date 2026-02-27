@@ -4,6 +4,20 @@ server:
 spring:
   application:
     name: mercadopago-checkout
+  datasource:
+    url: jdbc:mysql://localhost:3306/checkout?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: ${USER}
+    password: ${PASS}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update        # update | create | create-drop | validate | none
+      show-sql: true
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQL8Dialect
+          format_sql: true
 
 mercadopago:
   access-token: ${MERCADOPAGO_ACCESS_TOKEN:TEST-your-access-token-here}

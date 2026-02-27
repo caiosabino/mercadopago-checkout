@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CheckoutException" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-02-22T13:49:33.610Z" hostname="caio-sabino" time="0.003">
+<testsuite name="CheckoutException" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-02-27T01:23:31.750Z" hostname="caio-sabino" time="0.003">
   <properties/>
   <testcase name="deve criar exceção com mensagem e statusCode" classname="com.marketplace.checkout.exception.CheckoutExceptionTest" time="0.001"/>
   <testcase name="deve ser RuntimeException" classname="com.marketplace.checkout.exception.CheckoutExceptionTest" time="0.0"/>

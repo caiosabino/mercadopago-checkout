@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="DTOs" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-02-27T01:23:31.668Z" hostname="caio-sabino" time="0.079">
+<testsuite name="DTOs" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-02-27T01:54:35.993Z" hostname="caio-sabino" time="0.097">
   <properties/>
-  <testcase name="CheckoutPreferenceRequest.ItemRequest - currencyId padrão é BRL" classname="com.marketplace.checkout.dto.DtoTest" time="0.049"/>
-  <testcase name="ErrorResponse - builder deve preencher todos os campos" classname="com.marketplace.checkout.dto.DtoTest" time="0.018"/>
-  <testcase name="CheckoutPreferenceRequest.ItemRequest - setter e getter" classname="com.marketplace.checkout.dto.DtoTest" time="0.003"/>
+  <testcase name="CheckoutPreferenceRequest.ItemRequest - currencyId padrão é BRL" classname="com.marketplace.checkout.dto.DtoTest" time="0.057"/>
+  <testcase name="ErrorResponse - builder deve preencher todos os campos" classname="com.marketplace.checkout.dto.DtoTest" time="0.021"/>
+  <testcase name="CheckoutPreferenceRequest.ItemRequest - setter e getter" classname="com.marketplace.checkout.dto.DtoTest" time="0.004"/>
   <testcase name="CheckoutPreferenceRequest.BackUrlsRequest - setter e getter" classname="com.marketplace.checkout.dto.DtoTest" time="0.002"/>
   <testcase name="CheckoutPreferenceRequest.PayerRequest - setter e getter completo" classname="com.marketplace.checkout.dto.DtoTest" time="0.002"/>
-  <testcase name="WebhookNotification - setter e getter completo" classname="com.marketplace.checkout.dto.DtoTest" time="0.002"/>
-  <testcase name="CheckoutPreferenceResponse - builder deve preencher todos os campos" classname="com.marketplace.checkout.dto.DtoTest" time="0.002"/>
+  <testcase name="WebhookNotification - setter e getter completo" classname="com.marketplace.checkout.dto.DtoTest" time="0.003"/>
+  <testcase name="CheckoutPreferenceResponse - builder deve preencher todos os campos" classname="com.marketplace.checkout.dto.DtoTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

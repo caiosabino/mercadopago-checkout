@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="getPreference" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-02-27T01:23:32.758Z" hostname="caio-sabino" time="0.252">
+<testsuite name="getPreference" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-02-27T01:54:37.311Z" hostname="caio-sabino" time="0.332">
   <properties/>
-  <testcase name="deve retornar preferência pelo ID com sucesso" classname="com.marketplace.checkout.service.CheckoutServiceTest$GetPreference" time="0.181"/>
-  <testcase name="deve lançar CheckoutException com status 500 em MPException no getPreference" classname="com.marketplace.checkout.service.CheckoutServiceTest$GetPreference" time="0.028"/>
-  <testcase name="deve lançar CheckoutException quando preferência não encontrada (404)" classname="com.marketplace.checkout.service.CheckoutServiceTest$GetPreference" time="0.041"/>
-  <system-out><![CDATA[22:23:32.933 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Fetching preference: PREF-123
-22:23:32.963 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Fetching preference: PREF-ANY
-22:23:33.008 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Fetching preference: PREF-INVALID
+  <testcase name="deve retornar preferência pelo ID com sucesso" classname="com.marketplace.checkout.service.CheckoutServiceTest$GetPreference" time="0.194"/>
+  <testcase name="deve lançar CheckoutException com status 500 em MPException no getPreference" classname="com.marketplace.checkout.service.CheckoutServiceTest$GetPreference" time="0.08"/>
+  <testcase name="deve lançar CheckoutException quando preferência não encontrada (404)" classname="com.marketplace.checkout.service.CheckoutServiceTest$GetPreference" time="0.05"/>
+  <system-out><![CDATA[22:54:37.497 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Fetching preference: PREF-123
+22:54:37.555 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Fetching preference: PREF-ANY
+22:54:37.640 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Fetching preference: PREF-INVALID
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

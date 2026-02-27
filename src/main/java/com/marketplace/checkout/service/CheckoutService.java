@@ -1,5 +1,6 @@
 package com.marketplace.checkout.service;
 
+import com.marketplace.checkout.domain.entities.PreferenceEntity;
 import com.marketplace.checkout.domain.repository.PreferenceRepository;
 import com.marketplace.checkout.dto.*;
 import com.marketplace.checkout.exception.CheckoutException;
@@ -37,12 +38,11 @@ public class CheckoutService {
 
             if (request.getPayer() != null) {
                 preferenceRepository.save(
-                        com.marketplace.checkout.domain.entities.Preference.builder()
+                        PreferenceEntity.builder()
                                 .name(request.getPayer().getName())
                                 .surName(request.getPayer().getSurname())
                                 .preferenceId(preference.getId())
-                                .build()
-                );
+                                .build());
             }
 
             return CheckoutPreferenceResponse.builder()

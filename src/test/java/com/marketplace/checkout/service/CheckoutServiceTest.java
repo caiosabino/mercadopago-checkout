@@ -84,7 +84,7 @@ class CheckoutServiceTest {
 
     @Nested
     @DisplayName("createPreference")
-    class CreatePreference {
+    class CreatePreferenceEntity {
 
         @Test
         @DisplayName("deve criar preferência com sucesso - request mínimo (sem payer)")
@@ -306,7 +306,7 @@ class CheckoutServiceTest {
 
     @Nested
     @DisplayName("getPreference")
-    class GetPreference {
+    class GetPreferenceEntity {
 
         @Test
         @DisplayName("deve retornar preferência pelo ID com sucesso")

@@ -3,7 +3,7 @@ import jakarta.persistence.*;
 
 @Table(name = "preference")
 @Entity
-public class Preference {
+public class PreferenceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,9 +17,9 @@ public class Preference {
     @Column
     private String preferenceId;
 
-    public Preference() {}
+    public PreferenceEntity() {}
 
-    public Preference(Long id, String name, String surName, String preferenceId) {
+    public PreferenceEntity(Long id, String name, String surName, String preferenceId) {
         this.id = id;
         this.name = name;
         this.surName = surName;
@@ -41,8 +41,8 @@ public class Preference {
         public PreferenceBuilder surName(String surName) { this.surName = surName; return this; }
         public PreferenceBuilder preferenceId(String preferenceId) { this.preferenceId = preferenceId; return this; }
 
-        public Preference build() {
-            return new Preference(id, name, surName, preferenceId);
+        public PreferenceEntity build() {
+            return new PreferenceEntity(id, name, surName, preferenceId);
         }
     }
 

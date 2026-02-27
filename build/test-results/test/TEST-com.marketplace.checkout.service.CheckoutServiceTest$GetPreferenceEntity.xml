@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="getPreference" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-02-27T02:14:20.583Z" hostname="caio-sabino" time="0.279">
+  <properties/>
+  <testcase name="deve retornar preferência pelo ID com sucesso" classname="com.marketplace.checkout.service.CheckoutServiceTest$GetPreferenceEntity" time="0.219"/>
+  <testcase name="deve lançar CheckoutException com status 500 em MPException no getPreference" classname="com.marketplace.checkout.service.CheckoutServiceTest$GetPreferenceEntity" time="0.035"/>
+  <testcase name="deve lançar CheckoutException quando preferência não encontrada (404)" classname="com.marketplace.checkout.service.CheckoutServiceTest$GetPreferenceEntity" time="0.023"/>
+  <system-out><![CDATA[23:14:20.795 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Fetching preference: PREF-123
+23:14:20.832 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Fetching preference: PREF-ANY
+23:14:20.862 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Fetching preference: PREF-INVALID
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,5 +1,7 @@
 package com.marketplace.checkout.service;
 
+import com.marketplace.checkout.domain.entities.PreferenceEntity;
+import com.marketplace.checkout.domain.repository.PreferenceRepository;
 import com.marketplace.checkout.dto.*;
 import com.marketplace.checkout.exception.CheckoutException;
 import com.mercadopago.client.common.AddressRequest;
@@ -23,6 +25,7 @@ public class CheckoutService {
     private String defaultNotificationUrl;
 
     private final PreferenceClient client;
+    private final PreferenceRepository preferenceRepository;
 
     public CheckoutPreferenceResponse createPreference(CheckoutPreferenceRequest request) {
         log.info("Creating Mercado Pago preference for externalRef: {}", request.getExternalReference());
@@ -32,6 +35,15 @@ public class CheckoutService {
             Preference preference = client.create(mpRequest);
 
             log.info("Preference created successfully. ID: {}", preference.getId());
+
+            if (request.getPayer() != null) {
+                preferenceRepository.save(
+                        PreferenceEntity.builder()
+                                .name(request.getPayer().getName())
+                                .surName(request.getPayer().getSurname())
+                                .preferenceId(preference.getId())
+                                .build());
+            }
 
             return CheckoutPreferenceResponse.builder()
                     .id(preference.getId())

@@ -155,6 +155,18 @@ Implemente a lógica de negócio no `WebhookController.handleWebhook()`.
 
 ---
 
+## .env
+
+Configure um arquivo na raiz do projeto com o nome .env
+e adicione as variáveis abaixo:
+
+MERCADOPAGO_ACCESS_TOKEN
+MERCADOPAGO_NOTIFICATION_URL
+USER
+PASS
+
+---
+
 ## 📦 Estrutura do Projeto
 
 ```

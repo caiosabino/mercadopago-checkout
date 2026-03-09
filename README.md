@@ -138,6 +138,79 @@ Recebe notificações de pagamento do Mercado Pago (IPN / Webhook).
 ### POST `/api/webhooks/mercadopago`
 Alias legado para compatibilidade do webhook.
 
+### Products (`/products`)
+
+CRUD de produtos do marketplace.
+
+### GET `/products`
+Lista produtos com filtros opcionais:
+
+- `search` (texto livre em `title`, `description`, `sku`, `brand`)
+- `category` (match exato)
+- `status` (default `all`; ex.: `active`, `inactive`)
+
+Exemplo:
+
+```bash
+curl "http://localhost:8080/products?search=notebook&category=Eletronicos&status=active"
+```
+
+### POST `/products`
+Cria um produto.
+
+**Request body:**
+```json
+{
+  "title": "Notebook Gamer 16GB",
+  "description": "Tela 15.6, SSD 512GB",
+  "price": 5999.90,
+  "category": "Eletronicos",
+  "brand": "Marca X",
+  "sku": "SKU-NOTE-001",
+  "ean": "7891234567890",
+  "stock": 12,
+  "condition": "new",
+  "images": [
+    "https://cdn.exemplo.com/produtos/note-1.jpg"
+  ],
+  "seller": "Loja Oficial",
+  "freeShipping": true,
+  "weightKg": 2.35,
+  "status": "active"
+}
+```
+
+**Response (201):**
+```json
+{
+  "id": "p-1a2b3c4d",
+  "title": "Notebook Gamer 16GB",
+  "description": "Tela 15.6, SSD 512GB",
+  "price": 5999.90,
+  "category": "Eletronicos",
+  "brand": "Marca X",
+  "sku": "SKU-NOTE-001",
+  "ean": "7891234567890",
+  "stock": 12,
+  "condition": "new",
+  "images": [
+    "https://cdn.exemplo.com/produtos/note-1.jpg"
+  ],
+  "seller": "Loja Oficial",
+  "freeShipping": true,
+  "weightKg": 2.35,
+  "status": "active",
+  "createdAt": "2026-03-09T20:00:00-03:00",
+  "updatedAt": "2026-03-09T20:00:00-03:00"
+}
+```
+
+### PUT `/products/{id}`
+Atualiza um produto existente. O payload é o mesmo do `POST /products`.
+
+### DELETE `/products/{id}`
+Remove um produto. Retorna `204 No Content`.
+
 ---
 
 ## 🌐 Integração com o Frontend (Marketplace)

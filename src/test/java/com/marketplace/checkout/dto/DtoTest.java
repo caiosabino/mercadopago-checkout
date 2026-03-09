@@ -137,7 +137,6 @@ class DtoTest {
     @Test
     @DisplayName("ErrorResponse - builder deve preencher todos os campos")
     void errorResponseBuilder() {
-        OffsetDateTime now = OffsetDateTime.now();
         ErrorResponse error = ErrorResponse.builder()
                 .status(400)
                 .error("Validation Error")
@@ -151,5 +150,107 @@ class DtoTest {
         assertThat(error.getMessage()).isEqualTo("Invalid data");
         assertThat(error.getTimestamp()).isNotNull();
         assertThat(error.getDetails()).containsExactly("field is required");
+    }
+
+    @Test
+    @DisplayName("PixPaymentRequest - setter e getter completo")
+    void pixPaymentRequestSetterGetter() {
+        PixPaymentRequest request = new PixPaymentRequest();
+        request.setTransactionAmount(new BigDecimal("49.90"));
+        request.setDescription("Pagamento Pix de teste");
+        request.setExternalReference("ORDER-PIX-1");
+        request.setTxId("txid-001");
+
+        PixPaymentRequest.PayerRequest payer = new PixPaymentRequest.PayerRequest();
+        payer.setEmail("pix@example.com");
+        payer.setName("Cliente Teste");
+        payer.setCpf("12345678909");
+        request.setPayer(payer);
+
+        assertThat(request.getTransactionAmount()).isEqualByComparingTo("49.90");
+        assertThat(request.getDescription()).isEqualTo("Pagamento Pix de teste");
+        assertThat(request.getExternalReference()).isEqualTo("ORDER-PIX-1");
+        assertThat(request.getTxId()).isEqualTo("txid-001");
+        assertThat(request.getPayer().getEmail()).isEqualTo("pix@example.com");
+        assertThat(request.getPayer().getName()).isEqualTo("Cliente Teste");
+        assertThat(request.getPayer().getCpf()).isEqualTo("12345678909");
+    }
+
+    @Test
+    @DisplayName("PixPaymentResponse - builder deve preencher todos os campos")
+    void pixPaymentResponseBuilder() {
+        OffsetDateTime now = OffsetDateTime.now();
+        PixPaymentResponse response = PixPaymentResponse.builder()
+                .paymentId("txid-abc")
+                .status("ATIVA")
+                .statusDetail("active_charge")
+                .qrCode("000201010212...")
+                .qrCodeBase64("iVBORw0KGgoAAA...")
+                .transactionId("txid-abc")
+                .ticketUrl("https://ticket.example.com/123")
+                .dateCreated(now)
+                .build();
+
+        assertThat(response.getPaymentId()).isEqualTo("txid-abc");
+        assertThat(response.getStatus()).isEqualTo("ATIVA");
+        assertThat(response.getStatusDetail()).isEqualTo("active_charge");
+        assertThat(response.getQrCode()).isEqualTo("000201010212...");
+        assertThat(response.getQrCodeBase64()).isEqualTo("iVBORw0KGgoAAA...");
+        assertThat(response.getTransactionId()).isEqualTo("txid-abc");
+        assertThat(response.getTicketUrl()).isEqualTo("https://ticket.example.com/123");
+        assertThat(response.getDateCreated()).isEqualTo(now);
+    }
+
+    @Test
+    @DisplayName("ProductRequest - setter e getter completo")
+    void productRequestSetterGetter() {
+        ProductRequest request = new ProductRequest();
+        request.setTitle("Produto");
+        request.setDescription("Descricao");
+        request.setPrice(new BigDecimal("149.90"));
+        request.setCategory("Eletronicos");
+        request.setBrand("Marca X");
+        request.setSku("SKU-100");
+        request.setEan("7891234567890");
+        request.setStock(5);
+        request.setCondition("new");
+        request.setImages(java.util.List.of("https://img.test/a.jpg"));
+        request.setSeller("Loja X");
+        request.setFreeShipping(true);
+        request.setWeightKg(new BigDecimal("0.900"));
+        request.setStatus("active");
+
+        assertThat(request.getTitle()).isEqualTo("Produto");
+        assertThat(request.getSku()).isEqualTo("SKU-100");
+        assertThat(request.getFreeShipping()).isTrue();
+    }
+
+    @Test
+    @DisplayName("ProductResponse - builder deve preencher todos os campos")
+    void productResponseBuilder() {
+        OffsetDateTime now = OffsetDateTime.now();
+        ProductResponse response = ProductResponse.builder()
+                .id("p-1")
+                .title("Produto")
+                .description("Descricao")
+                .price(new BigDecimal("149.90"))
+                .category("Eletronicos")
+                .brand("Marca X")
+                .sku("SKU-100")
+                .ean("7891234567890")
+                .stock(10)
+                .condition("new")
+                .images(java.util.List.of("https://img.test/a.jpg"))
+                .seller("Loja X")
+                .freeShipping(false)
+                .weightKg(new BigDecimal("0.900"))
+                .status("active")
+                .createdAt(now)
+                .updatedAt(now)
+                .build();
+
+        assertThat(response.getId()).isEqualTo("p-1");
+        assertThat(response.getCategory()).isEqualTo("Eletronicos");
+        assertThat(response.getImages()).hasSize(1);
     }
 }

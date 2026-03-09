@@ -1,6 +1,8 @@
-# 🛒 Mercado Pago Checkout — Spring Boot
+# 🛒 Checkout — Spring Boot
 
-Aplicação Spring Boot 3.4 / Java 21 / Gradle para integração com a API de **Checkout Preferences** do Mercado Pago.
+Aplicação Spring Boot 3.4 / Java 21 / Gradle para integração com:
+- **Checkout Preferences** do Mercado Pago
+- **Pix API padrão Bacen (governo)** via PSP compatível
 
 ## Pré-requisitos
 
@@ -24,7 +26,11 @@ Acesse o painel do Mercado Pago Developers > Suas integrações > Credenciais.
 
 ```bash
 export MERCADOPAGO_ACCESS_TOKEN=TEST-seu-token-aqui
-export MERCADOPAGO_NOTIFICATION_URL=https://seu-dominio.com/api/webhooks/mercadopago
+export MERCADOPAGO_NOTIFICATION_URL=https://seu-dominio.com/api/webhooks/checkout
+export PIX_GOV_BASE_URL=https://seu-psp-pix.com.br
+export PIX_GOV_RECEIVER_KEY=sua-chave-pix
+export PIX_GOV_BEARER_TOKEN=token-ou-use-oauth
+export PIX_GOV_MOCK_ENABLED=false
 ```
 
 Ou edite `src/main/resources/application.yml`:
@@ -32,7 +38,13 @@ Ou edite `src/main/resources/application.yml`:
 ```yaml
 mercadopago:
   access-token: TEST-seu-token-aqui
-  notification-url: https://seu-dominio.com/api/webhooks/mercadopago
+  notification-url: https://seu-dominio.com/api/webhooks/checkout
+pix:
+  gov:
+    mock-enabled: false
+    base-url: https://seu-psp-pix.com.br
+    receiver-key: sua-chave-pix
+    bearer-token: token-ou-use-oauth
 ```
 
 ---
@@ -103,8 +115,28 @@ Cria uma preferência de checkout no Mercado Pago.
 ### GET `/api/checkout/preferences/{id}`
 Busca uma preferência existente pelo ID.
 
-### POST `/api/webhooks/mercadopago`
+### POST `/api/checkout/pix/payments`
+Cria cobrança Pix (API padrão Bacen) e retorna dados de QR Code.
+
+**Request body:**
+```json
+{
+  "transactionAmount": 49.90,
+  "description": "Pagamento pedido ORDER-PIX-1",
+  "externalReference": "ORDER-PIX-1",
+  "txId": "txid-opcional-123",
+  "payer": {
+    "name": "Cliente Teste",
+    "cpf": "12345678909"
+  }
+}
+```
+
+### POST `/api/webhooks/checkout`
 Recebe notificações de pagamento do Mercado Pago (IPN / Webhook).
+
+### POST `/api/webhooks/mercadopago`
+Alias legado para compatibilidade do webhook.
 
 ---
 
@@ -148,8 +180,22 @@ window.location.href = sandboxInitPoint; // use initPoint em produção
 Configure a URL de notificação para receber atualizações de pagamento em tempo real.
 
 1. No painel do Mercado Pago: Configurações > Notificações > IPN
-2. URL: `https://seu-dominio.com/api/webhooks/mercadopago`
-3. Ou passe `notificationUrl` no corpo da requisição de criação da preferência.
+2. URL principal: `https://seu-dominio.com/api/webhooks/checkout`
+3. Compatibilidade legada: `https://seu-dominio.com/api/webhooks/mercadopago`
+4. Para Pix Bacen, webhook é configurado no PSP via endpoint específico de webhook Pix.
+
+---
+
+## 🧪 Teste local Pix (curl)
+
+Script pronto para ambiente de testes local:
+
+```bash
+./scripts/test-pix-local.sh
+```
+
+Ele chama `POST /api/checkout/pix/payments` em `http://localhost:8080`.
+Por padrão, em ambiente local, `PIX_GOV_MOCK_ENABLED=true` e o endpoint responde com QR mock.
 
 Implemente a lógica de negócio no `WebhookController.handleWebhook()`.
 
@@ -162,6 +208,9 @@ e adicione as variáveis abaixo:
 
 MERCADOPAGO_ACCESS_TOKEN
 MERCADOPAGO_NOTIFICATION_URL
+PIX_GOV_BASE_URL
+PIX_GOV_RECEIVER_KEY
+PIX_GOV_BEARER_TOKEN (ou PIX_GOV_OAUTH_TOKEN_URL + PIX_GOV_CLIENT_ID + PIX_GOV_CLIENT_SECRET)
 USER
 PASS
 
@@ -177,10 +226,12 @@ src/main/java/com/marketplace/checkout/
 │   └── WebConfig.java                 ← CORS para o frontend
 ├── controller/
 │   ├── CheckoutController.java        ← POST/GET /api/checkout/preferences
-│   └── WebhookController.java         ← POST /api/webhooks/mercadopago
+│   └── WebhookController.java         ← POST /api/webhooks/checkout (+ alias legado)
 ├── dto/
 │   ├── CheckoutPreferenceRequest.java
 │   ├── CheckoutPreferenceResponse.java
+│   ├── PixPaymentRequest.java
+│   ├── PixPaymentResponse.java
 │   ├── WebhookNotification.java
 │   └── ErrorResponse.java
 ├── exception/

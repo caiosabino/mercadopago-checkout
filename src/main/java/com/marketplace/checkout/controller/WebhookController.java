@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/api/webhooks")
-@Tag(name = "Webhooks", description = "Mercado Pago payment notifications")
+@Tag(name = "Webhooks", description = "Checkout payment notifications")
 public class WebhookController {
 
     /**
      * Endpoint para receber notificações IPN/Webhook do Mercado Pago.
      * Configure a URL deste endpoint no painel do Mercado Pago ou via notificationUrl na preferência.
      */
-    @PostMapping("/mercadopago")
-    @Operation(summary = "Receive Mercado Pago webhook notifications")
+    @PostMapping({"/checkout", "/mercadopago"})
+    @Operation(summary = "Receive checkout webhook notifications")
     public ResponseEntity<Void> receiveNotification(
             @RequestBody(required = false) WebhookNotification notification,
             @RequestParam(value = "id", required = false) String id,

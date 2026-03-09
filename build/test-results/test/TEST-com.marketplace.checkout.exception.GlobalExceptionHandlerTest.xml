@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="GlobalExceptionHandler" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-02-27T02:14:19.325Z" hostname="caio-sabino" time="1.238">
+<testsuite name="GlobalExceptionHandler" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-03-09T22:54:42.667Z" hostname="caio-sabino" time="0.223">
   <properties/>
-  <testcase name="deve retornar 400 com lista de detalhes para MethodArgumentNotValidException" classname="com.marketplace.checkout.exception.GlobalExceptionHandlerTest" time="1.218"/>
-  <testcase name="deve retornar resposta com status correto para CheckoutException" classname="com.marketplace.checkout.exception.GlobalExceptionHandlerTest" time="0.008"/>
-  <testcase name="deve retornar 500 para exceções genéricas" classname="com.marketplace.checkout.exception.GlobalExceptionHandlerTest" time="0.009"/>
-  <system-out><![CDATA[23:14:20.550 [Test worker] ERROR com.marketplace.checkout.exception.GlobalExceptionHandler -- Checkout error: API Error
-23:14:20.556 [Test worker] ERROR com.marketplace.checkout.exception.GlobalExceptionHandler -- Unexpected error
+  <testcase name="deve retornar 400 com lista de detalhes para MethodArgumentNotValidException" classname="com.marketplace.checkout.exception.GlobalExceptionHandlerTest" time="0.215"/>
+  <testcase name="deve retornar resposta com status correto para CheckoutException" classname="com.marketplace.checkout.exception.GlobalExceptionHandlerTest" time="0.0"/>
+  <testcase name="deve retornar 500 para exceções genéricas" classname="com.marketplace.checkout.exception.GlobalExceptionHandlerTest" time="0.006"/>
+  <system-out><![CDATA[19:54:42.884 [Test worker] ERROR com.marketplace.checkout.exception.GlobalExceptionHandler -- Checkout error: API Error
+19:54:42.885 [Test worker] ERROR com.marketplace.checkout.exception.GlobalExceptionHandler -- Unexpected error
 java.lang.RuntimeException: Unexpected failure
 	at com.marketplace.checkout.exception.GlobalExceptionHandlerTest.deveRetornar500ParaExcecaoGenerica(GlobalExceptionHandlerTest.java:67)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
@@ -90,10 +90,5 @@ java.lang.RuntimeException: Unexpected failure
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 ]]></system-out>
-  <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build what is described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
-WARNING: A Java agent has been loaded dynamically (/home/caio/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.15.11/a38b16385e867f59a641330f0362ebe742788ed8/byte-buddy-agent-1.15.11.jar)
-WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
-WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
-WARNING: Dynamic loading of agents will be disallowed by default in a future release
-]]></system-err>
+  <system-err><![CDATA[]]></system-err>
 </testsuite>

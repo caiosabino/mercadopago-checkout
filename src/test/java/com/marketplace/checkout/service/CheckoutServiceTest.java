@@ -3,11 +3,18 @@ package com.marketplace.checkout.service;
 import com.marketplace.checkout.domain.repository.PreferenceRepository;
 import com.marketplace.checkout.dto.CheckoutPreferenceRequest;
 import com.marketplace.checkout.dto.CheckoutPreferenceResponse;
+import com.marketplace.checkout.dto.PixPaymentRequest;
+import com.marketplace.checkout.dto.PixPaymentResponse;
 import com.marketplace.checkout.exception.CheckoutException;
+import com.mercadopago.client.payment.PaymentClient;
+import com.mercadopago.client.payment.PaymentCreateRequest;
 import com.mercadopago.client.preference.PreferenceClient;
 import com.mercadopago.client.preference.PreferenceRequest;
 import com.mercadopago.exceptions.MPApiException;
 import com.mercadopago.exceptions.MPException;
+import com.mercadopago.resources.payment.Payment;
+import com.mercadopago.resources.payment.PaymentPointOfInteraction;
+import com.mercadopago.resources.payment.PaymentTransactionData;
 import com.mercadopago.resources.preference.Preference;
 
 import org.junit.jupiter.api.DisplayName;
@@ -17,6 +24,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.web.client.RestClientException;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.math.BigDecimal;
@@ -36,6 +44,12 @@ class CheckoutServiceTest {
 
     @Mock
     private PreferenceClient client; // nome deve bater com o campo no service
+
+    @Mock
+    private PaymentClient paymentClient;
+
+    @Mock
+    private PixGovClient pixGovClient;
 
     @Mock
     private PreferenceRepository preferenceRepository; // adicionado pois o service depende dele
@@ -78,6 +92,49 @@ class CheckoutServiceTest {
             @Override public OffsetDateTime getDateCreated() { return OffsetDateTime.now(); }
             @Override public OffsetDateTime getExpirationDateTo() { return OffsetDateTime.now().plusDays(3); }
         };
+    }
+
+    private PixPaymentRequest buildPixRequest() {
+        PixPaymentRequest request = new PixPaymentRequest();
+        request.setTransactionAmount(new BigDecimal("29.90"));
+        request.setDescription("Pagamento pedido ORDER-PIX-1");
+        request.setExternalReference("ORDER-PIX-1");
+
+        PixPaymentRequest.PayerRequest payer = new PixPaymentRequest.PayerRequest();
+        payer.setEmail("pix@example.com");
+        request.setPayer(payer);
+        return request;
+    }
+
+    private PixChargeData buildPixChargeData() {
+        return PixChargeData.builder()
+                .txId("txid-pix-123")
+                .status("ATIVA")
+                .qrCode("000201010212...")
+                .qrCodeBase64("iVBORw0KGgoAAA...")
+                .location("https://pix.bcb.gov.br/loc/123")
+                .createdAt(OffsetDateTime.now())
+                .build();
+    }
+
+    private Payment buildMockPixPaymentMercadoPago() {
+        Payment payment = new Payment();
+        PaymentPointOfInteraction poi = new PaymentPointOfInteraction();
+        PaymentTransactionData transactionData = new PaymentTransactionData();
+
+        ReflectionTestUtils.setField(payment, "id", 1345332873L);
+        ReflectionTestUtils.setField(payment, "status", "pending");
+        ReflectionTestUtils.setField(payment, "statusDetail", "pending_waiting_transfer");
+        ReflectionTestUtils.setField(payment, "dateCreated", OffsetDateTime.now());
+
+        ReflectionTestUtils.setField(transactionData, "qrCode", "000201010212...");
+        ReflectionTestUtils.setField(transactionData, "qrCodeBase64", "iVBORw0KGgoAAA...");
+        ReflectionTestUtils.setField(transactionData, "transactionId", "txid-mp-123");
+        ReflectionTestUtils.setField(transactionData, "ticketUrl", "https://www.mercadopago.com.br/ticket/1345332873");
+
+        ReflectionTestUtils.setField(poi, "transactionData", transactionData);
+        ReflectionTestUtils.setField(payment, "pointOfInteraction", poi);
+        return payment;
     }
 
     // ---------------------------------------------------------------- createPreference
@@ -346,6 +403,98 @@ class CheckoutServiceTest {
             assertThatThrownBy(() -> checkoutService.getPreference("PREF-ANY"))
                     .isInstanceOf(CheckoutException.class)
                     .hasMessageContaining("Error fetching preference")
+                    .extracting("statusCode").isEqualTo(500);
+        }
+    }
+
+    @Nested
+    @DisplayName("createPixPayment")
+    class CreatePixPaymentEntity {
+
+        @Test
+        @DisplayName("deve criar pagamento pix com sucesso usando Mercado Pago por padrão")
+        void deveCriarPagamentoPixComSucessoNoMercadoPagoDefault() throws MPException, MPApiException {
+            when(paymentClient.create(any(PaymentCreateRequest.class))).thenReturn(buildMockPixPaymentMercadoPago());
+
+            PixPaymentResponse response = checkoutService.createPixPayment(buildPixRequest());
+
+            assertThat(response).isNotNull();
+            assertThat(response.getPaymentId()).isEqualTo("1345332873");
+            assertThat(response.getStatus()).isEqualTo("pending");
+            assertThat(response.getStatusDetail()).isEqualTo("pending_waiting_transfer");
+            assertThat(response.getQrCode()).isEqualTo("000201010212...");
+            assertThat(response.getQrCodeBase64()).isEqualTo("iVBORw0KGgoAAA...");
+            assertThat(response.getTransactionId()).isEqualTo("txid-mp-123");
+            assertThat(response.getTicketUrl()).contains("mercadopago.com.br/ticket");
+            verify(paymentClient, times(1)).create(any(PaymentCreateRequest.class));
+            verify(pixGovClient, never()).createImmediateCharge(any(PixPaymentRequest.class));
+        }
+
+        @Test
+        @DisplayName("deve usar provider gov quando configurado")
+        void deveRepassarRequestParaClientPixGov() throws MPException, MPApiException {
+            ReflectionTestUtils.setField(checkoutService, "pixProvider", "gov");
+            when(pixGovClient.createImmediateCharge(any(PixPaymentRequest.class))).thenReturn(buildPixChargeData());
+
+            PixPaymentRequest request = buildPixRequest();
+            request.setTxId("txid-custom");
+
+            checkoutService.createPixPayment(request);
+
+            verify(pixGovClient, times(1)).createImmediateCharge(request);
+            verify(paymentClient, never()).create(any(PaymentCreateRequest.class));
+        }
+
+        @Test
+        @DisplayName("deve propagar CheckoutException do client pix gov")
+        void devePropagarCheckoutExceptionDoClientPixGov() throws MPException, MPApiException {
+            ReflectionTestUtils.setField(checkoutService, "pixProvider", "gov");
+            when(pixGovClient.createImmediateCharge(any(PixPaymentRequest.class)))
+                    .thenThrow(new CheckoutException("Pix API error", 400));
+
+            assertThatThrownBy(() -> checkoutService.createPixPayment(buildPixRequest()))
+                    .isInstanceOf(CheckoutException.class)
+                    .hasMessageContaining("Pix API error")
+                    .extracting("statusCode").isEqualTo(400);
+        }
+
+        @Test
+        @DisplayName("deve mapear erro inesperado do client pix gov para status 500")
+        void deveMapearErroInesperadoNoPixGov() throws MPException, MPApiException {
+            ReflectionTestUtils.setField(checkoutService, "pixProvider", "gov");
+            when(pixGovClient.createImmediateCharge(any(PixPaymentRequest.class)))
+                    .thenThrow(new RestClientException("connection reset"));
+
+            assertThatThrownBy(() -> checkoutService.createPixPayment(buildPixRequest()))
+                    .isInstanceOf(CheckoutException.class)
+                    .hasMessageContaining("Pix integration error")
+                    .extracting("statusCode").isEqualTo(500);
+        }
+
+        @Test
+        @DisplayName("deve mapear MPApiException no fluxo pix mercado pago")
+        void deveMapearMPApiExceptionNoPixMercadoPago() throws MPException, MPApiException {
+            MPApiException mpApiEx = mock(MPApiException.class);
+            when(mpApiEx.getStatusCode()).thenReturn(401);
+            when(mpApiEx.getMessage()).thenReturn("Unauthorized");
+            when(paymentClient.create(any(PaymentCreateRequest.class))).thenThrow(mpApiEx);
+
+            assertThatThrownBy(() -> checkoutService.createPixPayment(buildPixRequest()))
+                    .isInstanceOf(CheckoutException.class)
+                    .hasMessageContaining("Mercado Pago API error")
+                    .extracting("statusCode").isEqualTo(401);
+        }
+
+        @Test
+        @DisplayName("deve mapear MPException no fluxo pix mercado pago")
+        void deveMapearMPExceptionNoPixMercadoPago() throws MPException, MPApiException {
+            MPException mpEx = mock(MPException.class);
+            when(mpEx.getMessage()).thenReturn("SDK error");
+            when(paymentClient.create(any(PaymentCreateRequest.class))).thenThrow(mpEx);
+
+            assertThatThrownBy(() -> checkoutService.createPixPayment(buildPixRequest()))
+                    .isInstanceOf(CheckoutException.class)
+                    .hasMessageContaining("Mercado Pago SDK error")
                     .extracting("statusCode").isEqualTo(500);
         }
     }

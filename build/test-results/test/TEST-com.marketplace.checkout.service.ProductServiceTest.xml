@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ProductService" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-03-09T22:54:43.228Z" hostname="caio-sabino" time="0.088">
+  <properties/>
+  <testcase name="updateProduct deve lançar 404 quando produto não existe" classname="com.marketplace.checkout.service.ProductServiceTest" time="0.068"/>
+  <testcase name="createProduct deve copiar campos do request" classname="com.marketplace.checkout.service.ProductServiceTest" time="0.004"/>
+  <testcase name="createProduct deve persistir e retornar produto" classname="com.marketplace.checkout.service.ProductServiceTest" time="0.002"/>
+  <testcase name="deleteProduct deve lançar 404 quando não existe" classname="com.marketplace.checkout.service.ProductServiceTest" time="0.002"/>
+  <testcase name="listProducts deve filtrar por search/category/status" classname="com.marketplace.checkout.service.ProductServiceTest" time="0.002"/>
+  <testcase name="updateProduct deve atualizar dados quando produto existe" classname="com.marketplace.checkout.service.ProductServiceTest" time="0.004"/>
+  <testcase name="deleteProduct deve remover quando existe" classname="com.marketplace.checkout.service.ProductServiceTest" time="0.002"/>
+  <testcase name="createProduct deve aceitar images nulo" classname="com.marketplace.checkout.service.ProductServiceTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

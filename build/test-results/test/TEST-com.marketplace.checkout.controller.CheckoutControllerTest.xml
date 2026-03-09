@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CheckoutController" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-03-09T22:54:40.149Z" hostname="caio-sabino" time="2.206">
+  <properties/>
+  <testcase name="deve mapear CheckoutException no GET" classname="com.marketplace.checkout.controller.CheckoutControllerTest" time="1.859"/>
+  <testcase name="deve retornar 400 quando request for inválido" classname="com.marketplace.checkout.controller.CheckoutControllerTest" time="0.156"/>
+  <testcase name="deve criar preferência e retornar 201" classname="com.marketplace.checkout.controller.CheckoutControllerTest" time="0.081"/>
+  <testcase name="deve criar pagamento pix e retornar 201" classname="com.marketplace.checkout.controller.CheckoutControllerTest" time="0.058"/>
+  <testcase name="deve buscar preferência por id" classname="com.marketplace.checkout.controller.CheckoutControllerTest" time="0.022"/>
+  <testcase name="deve retornar 400 quando request pix for inválido" classname="com.marketplace.checkout.controller.CheckoutControllerTest" time="0.026"/>
+  <system-out><![CDATA[19:54:41.345 [Test worker] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.2.Final
+19:54:41.831 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+19:54:41.831 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+19:54:41.835 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 3 ms
+19:54:41.907 [Test worker] INFO com.marketplace.checkout.controller.CheckoutController -- GET /api/checkout/preferences/PREF-404
+19:54:41.913 [Test worker] ERROR com.marketplace.checkout.exception.GlobalExceptionHandler -- Checkout error: Preferência não encontrada
+19:54:42.026 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+19:54:42.026 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+19:54:42.026 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+19:54:42.181 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+19:54:42.181 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+19:54:42.181 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+19:54:42.240 [Test worker] INFO com.marketplace.checkout.controller.CheckoutController -- POST /api/checkout/preferences - Creating preference
+19:54:42.259 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+19:54:42.260 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+19:54:42.260 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+19:54:42.291 [Test worker] INFO com.marketplace.checkout.controller.CheckoutController -- POST /api/checkout/pix/payments - Creating pix payment
+19:54:42.323 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+19:54:42.323 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+19:54:42.324 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+19:54:42.326 [Test worker] INFO com.marketplace.checkout.controller.CheckoutController -- GET /api/checkout/preferences/PREF-123
+19:54:42.339 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+19:54:42.340 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+19:54:42.340 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+]]></system-out>
+  <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build what is described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/home/caio/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.15.11/a38b16385e867f59a641330f0362ebe742788ed8/byte-buddy-agent-1.15.11.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

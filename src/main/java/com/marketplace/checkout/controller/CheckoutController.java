@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/checkout")
 @RequiredArgsConstructor
-@Tag(name = "Checkout", description = "Mercado Pago Checkout Preferences API")
+@Tag(name = "Checkout", description = "Checkout preferences + Pix API")
 public class CheckoutController {
 
     private final CheckoutService checkoutService;
@@ -34,5 +34,15 @@ public class CheckoutController {
     public ResponseEntity<CheckoutPreferenceResponse> getPreference(@PathVariable String id) {
         log.info("GET /api/checkout/preferences/{}", id);
         return ResponseEntity.ok(checkoutService.getPreference(id));
+    }
+
+    @PostMapping("/pix/payments")
+    @Operation(summary = "Create Pix payment", description = "Creates a Pix charge using Bacen standard API and returns QR code data")
+    public ResponseEntity<PixPaymentResponse> createPixPayment(
+            @Valid @RequestBody PixPaymentRequest request) {
+
+        log.info("POST /api/checkout/pix/payments - Creating pix payment");
+        PixPaymentResponse response = checkoutService.createPixPayment(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }

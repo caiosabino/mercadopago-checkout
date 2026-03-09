@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: mercadopago-checkout
+    name: checkout
   datasource:
     url: jdbc:mysql://localhost:3306/checkout?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: ${USER}
@@ -21,7 +21,20 @@ spring:
 
 mercadopago:
   access-token: ${MERCADOPAGO_ACCESS_TOKEN:TEST-your-access-token-here}
-  notification-url: ${MERCADOPAGO_NOTIFICATION_URL:https://your-domain.com/api/webhooks/mercadopago}
+  notification-url: ${MERCADOPAGO_NOTIFICATION_URL:https://your-domain.com/api/webhooks/checkout}
+
+pix:
+  provider: ${PIX_PROVIDER:mercadopago}
+  gov:
+    mock-enabled: ${PIX_GOV_MOCK_ENABLED:true}
+    base-url: ${PIX_GOV_BASE_URL:https://api-pix.example.com}
+    receiver-key: ${PIX_GOV_RECEIVER_KEY:your-pix-key}
+    default-expiration-seconds: ${PIX_GOV_EXPIRATION_SECONDS:3600}
+    bearer-token: ${PIX_GOV_BEARER_TOKEN:}
+    oauth-token-url: ${PIX_GOV_OAUTH_TOKEN_URL:}
+    client-id: ${PIX_GOV_CLIENT_ID:}
+    client-secret: ${PIX_GOV_CLIENT_SECRET:}
+    scope: ${PIX_GOV_SCOPE:cob.write cob.read payloadlocation.read}
 
 logging:
   level:

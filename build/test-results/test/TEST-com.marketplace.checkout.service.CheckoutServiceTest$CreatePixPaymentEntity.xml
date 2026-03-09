@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="createPixPayment" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-03-09T22:54:42.895Z" hostname="caio-sabino" time="0.267">
+  <properties/>
+  <testcase name="deve mapear erro inesperado do client pix gov para status 500" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePixPaymentEntity" time="0.202"/>
+  <testcase name="deve propagar CheckoutException do client pix gov" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePixPaymentEntity" time="0.003"/>
+  <testcase name="deve usar provider gov quando configurado" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePixPaymentEntity" time="0.004"/>
+  <testcase name="deve mapear MPException no fluxo pix mercado pago" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePixPaymentEntity" time="0.024"/>
+  <testcase name="deve mapear MPApiException no fluxo pix mercado pago" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePixPaymentEntity" time="0.024"/>
+  <testcase name="deve criar pagamento pix com sucesso usando Mercado Pago por padrão" classname="com.marketplace.checkout.service.CheckoutServiceTest$CreatePixPaymentEntity" time="0.006"/>
+  <system-out><![CDATA[19:54:43.093 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Pix payment with provider=gov for externalRef=ORDER-PIX-1
+19:54:43.094 [Test worker] ERROR com.marketplace.checkout.service.CheckoutService -- Pix Gov integration error: connection reset
+19:54:43.100 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Pix payment with provider=gov for externalRef=ORDER-PIX-1
+19:54:43.104 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Pix payment with provider=gov for externalRef=ORDER-PIX-1
+19:54:43.128 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Pix payment with provider=mercadopago for externalRef=ORDER-PIX-1
+19:54:43.130 [Test worker] ERROR com.marketplace.checkout.service.CheckoutService -- Mercado Pago Pix SDK error: SDK error
+19:54:43.154 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Pix payment with provider=mercadopago for externalRef=ORDER-PIX-1
+19:54:43.155 [Test worker] ERROR com.marketplace.checkout.service.CheckoutService -- Mercado Pago Pix API error: status=401, message=Unauthorized
+19:54:43.161 [Test worker] INFO com.marketplace.checkout.service.CheckoutService -- Creating Pix payment with provider=mercadopago for externalRef=ORDER-PIX-1
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

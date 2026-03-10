@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.038s</div>
+<div class="counter">0.044s</div>
 <p>duration</p>
 </div>
 </td>
@@ -81,25 +81,25 @@
 <tr>
 <td class="success">deve manter compatibilidade na rota legada mercadopago</td>
 <td class="success">deveManterCompatibilidadeRotaLegada()</td>
-<td class="success">0.008s</td>
+<td class="success">0.009s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">deve processar IPN via query params e retornar 200</td>
 <td class="success">deveProcessarIpnViaQueryParams()</td>
-<td class="success">0.010s</td>
+<td class="success">0.012s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">deve processar webhook via body e retornar 200 na rota checkout</td>
 <td class="success">deveProcessarWebhookViaBody()</td>
-<td class="success">0.012s</td>
+<td class="success">0.014s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">deve retornar 200 quando notificação vier vazia</td>
 <td class="success">deveRetornar200QuandoNotificacaoVazia()</td>
-<td class="success">0.008s</td>
+<td class="success">0.009s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -107,22 +107,22 @@
 <div class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>19:54:42.567 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
-19:54:42.567 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
-19:54:42.568 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
-19:54:42.570 [Test worker] INFO com.marketplace.checkout.controller.WebhookController -- IPN received - topic: payment, id: 123456
-19:54:42.570 [Test worker] INFO com.marketplace.checkout.controller.WebhookController -- Payment notification received. Payment ID: 123456
-19:54:42.577 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
-19:54:42.577 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
-19:54:42.577 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
-19:54:42.585 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
-19:54:42.586 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
-19:54:42.586 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
-19:54:42.593 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
-19:54:42.594 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
-19:54:42.594 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
-19:54:42.600 [Test worker] INFO com.marketplace.checkout.controller.WebhookController -- Webhook received - type: payment, action: payment.updated, dataId: 999
-19:54:42.600 [Test worker] INFO com.marketplace.checkout.controller.WebhookController -- Payment webhook. Action: payment.updated, PaymentID: 999
+<pre>06:45:16.721 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+06:45:16.721 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+06:45:16.721 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+06:45:16.724 [Test worker] INFO com.marketplace.checkout.controller.WebhookController -- IPN received - topic: payment, id: 123456
+06:45:16.724 [Test worker] INFO com.marketplace.checkout.controller.WebhookController -- Payment notification received. Payment ID: 123456
+06:45:16.732 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+06:45:16.732 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+06:45:16.733 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 1 ms
+06:45:16.741 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+06:45:16.742 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+06:45:16.742 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+06:45:16.751 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+06:45:16.751 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+06:45:16.751 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+06:45:16.757 [Test worker] INFO com.marketplace.checkout.controller.WebhookController -- Webhook received - type: payment, action: payment.updated, dataId: 999
+06:45:16.757 [Test worker] INFO com.marketplace.checkout.controller.WebhookController -- Payment webhook. Action: payment.updated, PaymentID: 999
 </pre>
 </span>
 </div>
@@ -134,7 +134,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="https://www.gradle.org">Gradle 9.0.0</a> at Mar 9, 2026, 7:54:43 PM</p>
+<a href="https://www.gradle.org">Gradle 9.0.0</a> at Mar 10, 2026, 6:45:17 AM</p>
 </div>
 </div>
 </body>

@@ -23,6 +23,7 @@ public class GlobalExceptionHandler {
                         .error("Checkout Error")
                         .message(ex.getMessage())
                         .timestamp(LocalDateTime.now())
+                        .details(ex.getDetails())
                         .build());
     }
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="GlobalExceptionHandler" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-03-09T22:54:42.667Z" hostname="caio-sabino" time="0.223">
+<testsuite name="GlobalExceptionHandler" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-03-10T09:45:16.849Z" hostname="caio-sabino" time="0.241">
   <properties/>
-  <testcase name="deve retornar 400 com lista de detalhes para MethodArgumentNotValidException" classname="com.marketplace.checkout.exception.GlobalExceptionHandlerTest" time="0.215"/>
-  <testcase name="deve retornar resposta com status correto para CheckoutException" classname="com.marketplace.checkout.exception.GlobalExceptionHandlerTest" time="0.0"/>
-  <testcase name="deve retornar 500 para exceções genéricas" classname="com.marketplace.checkout.exception.GlobalExceptionHandlerTest" time="0.006"/>
-  <system-out><![CDATA[19:54:42.884 [Test worker] ERROR com.marketplace.checkout.exception.GlobalExceptionHandler -- Checkout error: API Error
-19:54:42.885 [Test worker] ERROR com.marketplace.checkout.exception.GlobalExceptionHandler -- Unexpected error
+  <testcase name="deve retornar 400 com lista de detalhes para MethodArgumentNotValidException" classname="com.marketplace.checkout.exception.GlobalExceptionHandlerTest" time="0.234"/>
+  <testcase name="deve retornar resposta com status correto para CheckoutException" classname="com.marketplace.checkout.exception.GlobalExceptionHandlerTest" time="0.001"/>
+  <testcase name="deve retornar 500 para exceções genéricas" classname="com.marketplace.checkout.exception.GlobalExceptionHandlerTest" time="0.005"/>
+  <system-out><![CDATA[06:45:17.085 [Test worker] ERROR com.marketplace.checkout.exception.GlobalExceptionHandler -- Checkout error: API Error
+06:45:17.086 [Test worker] ERROR com.marketplace.checkout.exception.GlobalExceptionHandler -- Unexpected error
 java.lang.RuntimeException: Unexpected failure
 	at com.marketplace.checkout.exception.GlobalExceptionHandlerTest.deveRetornar500ParaExcecaoGenerica(GlobalExceptionHandlerTest.java:67)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)

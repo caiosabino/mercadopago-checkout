@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestClientResponseException;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 @Slf4j
@@ -67,11 +68,14 @@ public class CheckoutService {
                     .build();
 
         } catch (MPApiException ex) {
-            log.error("Mercado Pago API error: status={}, message={}", ex.getStatusCode(), ex.getMessage());
+            List<String> details = extractMercadoPagoDetails(ex);
+            log.error("Mercado Pago API error: status={}, message={}, details={}",
+                    ex.getStatusCode(), ex.getMessage(), details);
             throw new CheckoutException(
                     "Mercado Pago API error: " + ex.getMessage(),
                     ex.getStatusCode(),
-                    ex
+                    ex,
+                    details
             );
         } catch (MPException ex) {
             log.error("Mercado Pago SDK error: {}", ex.getMessage());
@@ -94,7 +98,12 @@ public class CheckoutService {
                     .build();
 
         } catch (MPApiException ex) {
-            throw new CheckoutException("Preference not found: " + ex.getMessage(), ex.getStatusCode(), ex);
+            throw new CheckoutException(
+                    "Preference not found: " + ex.getMessage(),
+                    ex.getStatusCode(),
+                    ex,
+                    extractMercadoPagoDetails(ex)
+            );
         } catch (MPException ex) {
             throw new CheckoutException("Error fetching preference: " + ex.getMessage(), 500, ex);
         }
@@ -240,11 +249,50 @@ public class CheckoutService {
                     .dateCreated(payment.getDateCreated())
                     .build();
         } catch (MPApiException ex) {
-            log.error("Mercado Pago Pix API error: status={}, message={}", ex.getStatusCode(), ex.getMessage());
-            throw new CheckoutException("Mercado Pago API error: " + ex.getMessage(), ex.getStatusCode(), ex);
+            List<String> details = extractMercadoPagoDetails(ex);
+            log.error("Mercado Pago Pix API error: status={}, message={}, details={}",
+                    ex.getStatusCode(), ex.getMessage(), details);
+            throw new CheckoutException(
+                    "Mercado Pago API error: " + ex.getMessage(),
+                    ex.getStatusCode(),
+                    ex,
+                    details
+            );
         } catch (MPException ex) {
             log.error("Mercado Pago Pix SDK error: {}", ex.getMessage());
             throw new CheckoutException("Mercado Pago SDK error: " + ex.getMessage(), 500, ex);
+        }
+    }
+
+    private List<String> extractMercadoPagoDetails(MPApiException ex) {
+        try {
+            Method getApiResponse = ex.getClass().getMethod("getApiResponse");
+            Object apiResponse = getApiResponse.invoke(ex);
+            if (apiResponse == null) {
+                return List.of("Sem corpo de resposta da API.");
+            }
+
+            String content = invokeToString(apiResponse, "getContent");
+            String cause = invokeToString(apiResponse, "getCause");
+            String status = invokeToString(apiResponse, "getStatusCode");
+
+            return List.of(
+                    "status=" + status,
+                    "cause=" + cause,
+                    "content=" + content
+            );
+        } catch (Exception reflectionError) {
+            return List.of("Nao foi possivel extrair detalhes da API: " + reflectionError.getMessage());
+        }
+    }
+
+    private String invokeToString(Object target, String methodName) {
+        try {
+            Method method = target.getClass().getMethod(methodName);
+            Object value = method.invoke(target);
+            return value == null ? "null" : value.toString();
+        } catch (Exception e) {
+            return "indisponivel";
         }
     }
 

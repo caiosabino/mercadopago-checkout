@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ProductController" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-03-09T22:54:42.360Z" hostname="caio-sabino" time="0.199">
+<testsuite name="ProductController" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-03-10T09:45:16.511Z" hostname="caio-sabino" time="0.2">
   <properties/>
-  <testcase name="POST /products deve validar payload" classname="com.marketplace.checkout.controller.ProductControllerTest" time="0.065"/>
-  <testcase name="DELETE /products/{id} deve retornar 204" classname="com.marketplace.checkout.controller.ProductControllerTest" time="0.013"/>
-  <testcase name="POST /products deve criar produto" classname="com.marketplace.checkout.controller.ProductControllerTest" time="0.031"/>
-  <testcase name="PUT /products/{id} deve atualizar produto" classname="com.marketplace.checkout.controller.ProductControllerTest" time="0.025"/>
-  <testcase name="POST /products deve criar produto sem images" classname="com.marketplace.checkout.controller.ProductControllerTest" time="0.022"/>
-  <testcase name="GET /products deve listar produtos" classname="com.marketplace.checkout.controller.ProductControllerTest" time="0.019"/>
-  <testcase name="PUT /products/{id} deve retornar 404 quando não encontrado" classname="com.marketplace.checkout.controller.ProductControllerTest" time="0.021"/>
-  <system-out><![CDATA[19:54:42.405 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
-19:54:42.405 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
-19:54:42.405 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
-19:54:42.436 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
-19:54:42.436 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
-19:54:42.436 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
-19:54:42.451 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
-19:54:42.451 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
-19:54:42.451 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
-19:54:42.480 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
-19:54:42.480 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
-19:54:42.481 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
-19:54:42.505 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
-19:54:42.505 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
-19:54:42.505 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
-19:54:42.528 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
-19:54:42.528 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
-19:54:42.528 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
-19:54:42.547 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
-19:54:42.548 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
-19:54:42.548 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
-19:54:42.557 [Test worker] ERROR com.marketplace.checkout.exception.GlobalExceptionHandler -- Checkout error: Produto nao encontrado
+  <testcase name="POST /products deve validar payload" classname="com.marketplace.checkout.controller.ProductControllerTest" time="0.059"/>
+  <testcase name="DELETE /products/{id} deve retornar 204" classname="com.marketplace.checkout.controller.ProductControllerTest" time="0.012"/>
+  <testcase name="POST /products deve criar produto" classname="com.marketplace.checkout.controller.ProductControllerTest" time="0.027"/>
+  <testcase name="PUT /products/{id} deve atualizar produto" classname="com.marketplace.checkout.controller.ProductControllerTest" time="0.028"/>
+  <testcase name="POST /products deve criar produto sem images" classname="com.marketplace.checkout.controller.ProductControllerTest" time="0.023"/>
+  <testcase name="GET /products deve listar produtos" classname="com.marketplace.checkout.controller.ProductControllerTest" time="0.021"/>
+  <testcase name="PUT /products/{id} deve retornar 404 quando não encontrado" classname="com.marketplace.checkout.controller.ProductControllerTest" time="0.027"/>
+  <system-out><![CDATA[06:45:16.554 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+06:45:16.554 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+06:45:16.554 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+06:45:16.580 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+06:45:16.580 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+06:45:16.580 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+06:45:16.592 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+06:45:16.593 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+06:45:16.593 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+06:45:16.622 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+06:45:16.622 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+06:45:16.622 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+06:45:16.648 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+06:45:16.649 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+06:45:16.649 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+06:45:16.673 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+06:45:16.674 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+06:45:16.674 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+06:45:16.694 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+06:45:16.694 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+06:45:16.695 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+06:45:16.706 [Test worker] ERROR com.marketplace.checkout.exception.GlobalExceptionHandler -- Checkout error: Produto nao encontrado
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

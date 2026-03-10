@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="DTOs" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-03-09T22:54:42.602Z" hostname="caio-sabino" time="0.06">
+<testsuite name="DTOs" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-03-10T09:45:16.759Z" hostname="caio-sabino" time="0.085">
   <properties/>
-  <testcase name="ProductRequest - setter e getter completo" classname="com.marketplace.checkout.dto.DtoTest" time="0.039"/>
+  <testcase name="ProductRequest - setter e getter completo" classname="com.marketplace.checkout.dto.DtoTest" time="0.052"/>
   <testcase name="CheckoutPreferenceRequest.ItemRequest - currencyId padrão é BRL" classname="com.marketplace.checkout.dto.DtoTest" time="0.0"/>
   <testcase name="PixPaymentRequest - setter e getter completo" classname="com.marketplace.checkout.dto.DtoTest" time="0.004"/>
-  <testcase name="ErrorResponse - builder deve preencher todos os campos" classname="com.marketplace.checkout.dto.DtoTest" time="0.009"/>
-  <testcase name="PixPaymentResponse - builder deve preencher todos os campos" classname="com.marketplace.checkout.dto.DtoTest" time="0.001"/>
+  <testcase name="ErrorResponse - builder deve preencher todos os campos" classname="com.marketplace.checkout.dto.DtoTest" time="0.018"/>
+  <testcase name="PixPaymentResponse - builder deve preencher todos os campos" classname="com.marketplace.checkout.dto.DtoTest" time="0.002"/>
   <testcase name="CheckoutPreferenceRequest.ItemRequest - setter e getter" classname="com.marketplace.checkout.dto.DtoTest" time="0.001"/>
-  <testcase name="CheckoutPreferenceRequest.BackUrlsRequest - setter e getter" classname="com.marketplace.checkout.dto.DtoTest" time="0.0"/>
-  <testcase name="CheckoutPreferenceRequest.PayerRequest - setter e getter completo" classname="com.marketplace.checkout.dto.DtoTest" time="0.0"/>
+  <testcase name="CheckoutPreferenceRequest.BackUrlsRequest - setter e getter" classname="com.marketplace.checkout.dto.DtoTest" time="0.001"/>
+  <testcase name="CheckoutPreferenceRequest.PayerRequest - setter e getter completo" classname="com.marketplace.checkout.dto.DtoTest" time="0.001"/>
   <testcase name="ProductResponse - builder deve preencher todos os campos" classname="com.marketplace.checkout.dto.DtoTest" time="0.001"/>
   <testcase name="WebhookNotification - setter e getter completo" classname="com.marketplace.checkout.dto.DtoTest" time="0.001"/>
-  <testcase name="CheckoutPreferenceResponse - builder deve preencher todos os campos" classname="com.marketplace.checkout.dto.DtoTest" time="0.0"/>
+  <testcase name="CheckoutPreferenceResponse - builder deve preencher todos os campos" classname="com.marketplace.checkout.dto.DtoTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

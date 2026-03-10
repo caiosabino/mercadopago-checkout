@@ -31,6 +31,9 @@ export PIX_GOV_BASE_URL=https://seu-psp-pix.com.br
 export PIX_GOV_RECEIVER_KEY=sua-chave-pix
 export PIX_GOV_BEARER_TOKEN=token-ou-use-oauth
 export PIX_GOV_MOCK_ENABLED=false
+export JWT_SECRET=troque-por-um-segredo-forte
+export DATA_ENCRYPTION_KEY=troque-por-uma-chave-forte
+export GOOGLE_CLIENT_ID=seu-client-id-do-google.apps.googleusercontent.com
 ```
 
 Ou edite `src/main/resources/application.yml`:
@@ -45,6 +48,13 @@ pix:
     base-url: https://seu-psp-pix.com.br
     receiver-key: sua-chave-pix
     bearer-token: token-ou-use-oauth
+
+security:
+  jwt:
+    secret: troque-por-um-segredo-forte
+  google:
+    client-id: seu-client-id-do-google.apps.googleusercontent.com
+  data-encryption-key: troque-por-uma-chave-forte
 ```
 
 ---
@@ -210,6 +220,26 @@ Atualiza um produto existente. O payload é o mesmo do `POST /products`.
 
 ### DELETE `/products/{id}`
 Remove um produto. Retorna `204 No Content`.
+
+### Auth (`/auth`)
+
+Rotas para integração da tela de login/cadastro com JWT.
+
+### POST `/auth/register`
+Cadastro de usuário (dados comuns em marketplaces brasileiros). Armazena CPF/CNPJ e telefone criptografados no banco e senha com hash BCrypt.
+
+### POST `/auth/login`
+Login com `email` + `password`. Retorna `accessToken` JWT.
+
+### POST `/auth/google`
+Login via Google usando `idToken` da API do Google.
+
+### GET `/auth/me`
+Retorna o usuário autenticado. Necessário header:
+
+```http
+Authorization: Bearer <jwt>
+```
 
 ---
 

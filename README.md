@@ -71,6 +71,17 @@ Acesse o Swagger UI: http://localhost:8080/swagger-ui.html
 
 ## 📡 Endpoints
 
+### Novos endpoints adicionados
+
+- `GET /products`
+- `POST /products` (JWT obrigatório)
+- `PUT /products/{id}` (JWT obrigatório)
+- `DELETE /products/{id}` (JWT obrigatório)
+- `POST /auth/register`
+- `POST /auth/login`
+- `POST /auth/google`
+- `GET /auth/me` (JWT obrigatório)
+
 ### POST `/api/checkout/preferences`
 Cria uma preferência de checkout no Mercado Pago.
 
@@ -151,6 +162,7 @@ Alias legado para compatibilidade do webhook.
 ### Products (`/products`)
 
 CRUD de produtos do marketplace.
+`GET` é público; `POST`, `PUT` e `DELETE` exigem `Authorization: Bearer <jwt>`.
 
 ### GET `/products`
 Lista produtos com filtros opcionais:
@@ -228,11 +240,47 @@ Rotas para integração da tela de login/cadastro com JWT.
 ### POST `/auth/register`
 Cadastro de usuário (dados comuns em marketplaces brasileiros). Armazena CPF/CNPJ e telefone criptografados no banco e senha com hash BCrypt.
 
+**Request body (exemplo):**
+```json
+{
+  "fullName": "Maria Souza",
+  "email": "maria@email.com",
+  "password": "SenhaForte123",
+  "phone": "+5511999999999",
+  "cpfCnpj": "12345678909",
+  "accountType": "INDIVIDUAL",
+  "birthDate": "1995-08-20",
+  "zipCode": "01310100",
+  "street": "Av. Paulista",
+  "streetNumber": "1000",
+  "complement": "Apto 42",
+  "neighborhood": "Bela Vista",
+  "city": "Sao Paulo",
+  "state": "SP",
+  "acceptedTerms": true
+}
+```
+
 ### POST `/auth/login`
 Login com `email` + `password`. Retorna `accessToken` JWT.
 
+**Request body:**
+```json
+{
+  "email": "maria@email.com",
+  "password": "SenhaForte123"
+}
+```
+
 ### POST `/auth/google`
 Login via Google usando `idToken` da API do Google.
+
+**Request body:**
+```json
+{
+  "idToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6..."
+}
+```
 
 ### GET `/auth/me`
 Retorna o usuário autenticado. Necessário header:
@@ -329,17 +377,24 @@ src/main/java/com/marketplace/checkout/
 │   └── WebConfig.java                 ← CORS para o frontend
 ├── controller/
 │   ├── CheckoutController.java        ← POST/GET /api/checkout/preferences
-│   └── WebhookController.java         ← POST /api/webhooks/checkout (+ alias legado)
+│   ├── WebhookController.java         ← POST /api/webhooks/checkout (+ alias legado)
+│   ├── ProductController.java         ← CRUD /products
+│   └── AuthController.java            ← /auth/register, /auth/login, /auth/google, /auth/me
 ├── dto/
 │   ├── CheckoutPreferenceRequest.java
 │   ├── CheckoutPreferenceResponse.java
 │   ├── PixPaymentRequest.java
 │   ├── PixPaymentResponse.java
 │   ├── WebhookNotification.java
-│   └── ErrorResponse.java
+│   ├── ErrorResponse.java
+│   ├── ProductRequest.java
+│   ├── ProductResponse.java
+│   └── auth/                          ← DTOs de autenticação e usuário
 ├── exception/
 │   ├── CheckoutException.java
 │   └── GlobalExceptionHandler.java
 └── service/
-    └── CheckoutService.java           ← lógica de integração com o MP SDK
+    ├── CheckoutService.java           ← lógica de integração com o MP SDK
+    ├── ProductService.java            ← regras de negócio dos produtos
+    └── auth/AuthService.java          ← cadastro/login/JWT
 ```
